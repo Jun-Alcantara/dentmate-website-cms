@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+  import { Link } from '@inertiajs/vue3'
+</script>
 
 <template>
   <div class="drawer lg:drawer-open">
@@ -16,16 +18,16 @@
           <h1 class="text-fontSecondary text-xl font-bold">Dentmate Website CMS</h1>
         </li>
         <li>
-          <a class="text-white bg-[#00B2FF]">
+          <Link :href="route('cms.homepage.show')" class="text-white" :class="{'active' : route().current('cms.homepage.show')}">
             <i class="fa fa-home"></i>
             Homepage
-          </a>
+          </Link>
         </li>
         <li>
-          <a class="text-white">
+          <Link href="/site-admin/services" class="text-white" :class="{'active' : route().current('cms.services.index')}">
             <i class="fa fa-tools"></i>
             Services
-          </a>
+          </Link>
         </li>
         <li>
           <a class="text-white">
@@ -43,10 +45,16 @@
           <a class="text-white">
             <i class="fa fa-sign-out"></i>
             Logout
-          </a>
+          </a> 
         </li>
       </ul>
     
     </div>
   </div>
 </template>
+
+<style scoped>
+  .active {
+    background-color: #00B2FF !important;
+  }
+</style>

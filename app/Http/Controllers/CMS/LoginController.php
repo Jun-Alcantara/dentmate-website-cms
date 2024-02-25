@@ -20,6 +20,6 @@ class LoginController extends Controller
             return "Invalid credentials";
         }
 
-        return "Logged in";
+        return redirect()->route('cms.homepage.show');
     }
 }
