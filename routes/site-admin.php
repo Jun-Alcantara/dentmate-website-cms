@@ -13,5 +13,7 @@ Route::prefix('site-admin')->group(function () {
         Route::get('homepage', [HomepageController::class, 'index'])->name('cms.homepage.show');
         Route::post('homepage/add-banner', [HomepageController::class, 'addBanner'])->name('cms.homepage.addBanner');
         Route::delete('homepage/remove-banner', [HomepageController::class, 'removeBanner'])->name('cms.homepage.removeBanner');
+
+        Route::post('homepage/why-dentmate', [HomepageController::class, 'saveWhyDentmate']);
     });
 });

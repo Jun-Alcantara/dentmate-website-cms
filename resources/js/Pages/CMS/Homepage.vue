@@ -1,11 +1,13 @@
 <script setup>
-  import TabContent from '@/Pages/CMS/HomepageComponents/TabContent.vue'
+  import BannerImagesTab from '@/Pages/CMS/HomepageComponents/BannerImagesTab.vue'
+  import WhyDentmateTab from '@/Pages/CMS/HomepageComponents/WhyDentmateTab.vue';
 
   const props = defineProps({
-    banners: Object
+    banners: Object,
+    slot1: Object,
+    slot2: Object,
+    slot3: Object
   })
-
-  console.log(props)
 </script>
 
 <script>
@@ -26,11 +28,13 @@
     <div role="tablist" class="tabs tabs-lifted mt-7">
       <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Banner Images" checked />
       <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <TabContent :images="banners" />
+        <BannerImagesTab :images="banners" />
       </div>
 
-      <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Why Dentmate?" />
-      <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content B</div>
+      <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Why Dentmate?" checked />
+      <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
+        <WhyDentmateTab :slot1="slot1" :slot2="slot2" :slot3="slot3"  />
+      </div>
 
       <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Before And After Slider" />
       <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">Tab content 3</div>
