@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CMS\BranchesController;
 use App\Http\Controllers\CMS\HomepageController;
 use App\Http\Controllers\CMS\LoginController;
 use App\Http\Controllers\CMS\ServicesController;
@@ -26,6 +27,14 @@ Route::prefix('site-admin')->group(function () {
             Route::get('', [ServicesController::class, 'index'])->name('cms.services.index');
             Route::post('add-service', [ServicesController::class, 'addService'])->name('cms.services.addService');
             Route::patch('update-service', [ServicesController::class, 'updateService'])->name('cms.services.updateService');
+            Route::delete('delete-service', [ServicesController::class, 'deleteService'])->name('cms.services.deleteService');
+        });
+
+        Route::prefix('branches')->group(function () {
+            Route::get('', [BranchesController::class, 'index'])->name('cms.branches.index');
+            Route::post('', [BranchesController::class, 'create'])->name('cms.branches.create');
+            Route::delete('', [BranchesController::class, 'delete'])->name('cms.branches.delete');
+            Route::post('update', [BranchesController::class, 'update'])->name('cms.branches.update');
         });
     });
 });

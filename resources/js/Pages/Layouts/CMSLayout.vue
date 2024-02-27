@@ -24,16 +24,16 @@
           </Link>
         </li>
         <li>
-          <Link href="/site-admin/services" class="text-white" :class="{'active' : route().current('cms.services.index')}">
+          <Link :href="route('cms.services.index')" class="text-white" :class="{'active' : route().current('cms.services.index')}">
             <i class="fa fa-tools"></i>
             Services
           </Link>
         </li>
         <li>
-          <a class="text-white">
+          <Link :href="route('cms.branches.index')" class="text-white" :class="{'active' : route().current('cms.branches.index')}">
             <i class="fa fa-store"></i>
             Branches
-          </a>
+          </Link>
         </li>
         <li>
           <a class="text-white">

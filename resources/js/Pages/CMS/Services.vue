@@ -1,7 +1,12 @@
 <script setup>
+  import { ref } from 'vue'
+  import { confirmationModalState } from '@/stores/globalState'
+  import { useForm } from '@inertiajs/vue3'
+
   import CreateUpdateModal from '@/Pages/CMS/ServicesComponents/CreateUpdateModal.vue'
   import ConfirmationModal from '@/Pages/CMS/components/ConfirmationModal.vue'
-  import { ref } from 'vue'
+  
+  const confirmationModal = confirmationModalState()
 
   const props = defineProps({
     services: Object
@@ -23,6 +28,18 @@
   const handleModaClosedEvent = () => {
     handleToggleModalClick()
     editingService.value = null
+  }
+
+  const handleDeletButtonClick = (service) => {
+    confirmationModal.setMessage(`Are you sure you want to delete ${service.name} service?`)
+    confirmationModal.onConfirmAction(() => {
+      useForm({
+        id: service.id
+      }).delete(route('cms.services.deleteService'), {
+        onSuccess: confirmationModal.close()
+      })
+    })
+    confirmationModal.open()
   }
 </script>
 
@@ -58,7 +75,6 @@
           </tr>
         </thead>
         <tbody>
-          <!-- row 1 -->
           <tr v-for="service in services" :key="service.id">
             <td class="w-[200px]">
               <figure>
@@ -69,7 +85,7 @@
             <td>{{ service.description }}</td>
             <th >
               <div class="flex justify-end gap-3 items-center  ">
-                <button class="btn btn-error btn-sm text-white">
+                <button @click="handleDeletButtonClick(service)" class="btn btn-error btn-sm text-white">
                   <i class="fa fa-trash"></i>
                 </button>
                 <button @click="handleEditClick(service)" class="btn btn-primary btn-sm">

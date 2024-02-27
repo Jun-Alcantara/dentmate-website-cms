@@ -1,24 +1,24 @@
 <script setup>
-  import { ref } from 'vue'
+  import { confirmationModalState } from '@/stores/globalState'
 
-  const showModal = ref(false)
+  const confirmationModal = confirmationModalState()
 
-  const handleClose = () => {
-    showModal.value = false
+  const handleConfirm = () => {
+    confirmationModal.confirmed()
   }
 </script>
 
 <template>
-  <dialog id="my_modal_2" class="modal" :class="{'modal-open': showModal}">
+  <dialog id="my_modal_2" class="modal" :class="{'modal-open': confirmationModal.state}">
     <div class="modal-box">
       <div class="mb-3">
-        <h3 class="text-center text-xl font-semibold">Are you sure you want to delete?</h3>
+        <h3 class="text-center text-xl font-semibold">{{ confirmationModal.message }}</h3>
       </div>
       <div class="flex justify-center gap-5">
-        <button @click="handleClose" class="btn btn-default">
+        <button @click="confirmationModal.close" class="btn btn-default">
           <i class="fa fa-times"></i> Cancel
         </button>
-        <button class="btn btn-error text-white">
+        <button @click="handleConfirm" class="btn btn-error text-white">
           <i class="fa fa-trash"></i> Delete
         </button>
       </div>

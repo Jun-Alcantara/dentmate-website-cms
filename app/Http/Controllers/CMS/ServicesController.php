@@ -58,4 +58,13 @@ class ServicesController extends Controller
 
         return back()->with('notification.success', 'Service details updated');
     }
+
+    public function deleteService(Request $request)
+    {
+        $service = Services::findOrFail($request->id);
+        $service->delete();
+
+        return back()
+            ->with('notification.success', 'A service has been deleted');
+    }
 }
