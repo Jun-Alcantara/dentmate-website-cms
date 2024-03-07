@@ -24,9 +24,27 @@
           </Link>
         </li>
         <li>
+          <Link :href="route('cms.ourdoctors.index')" class="text-white" :class="{'active' : route().current('cms.ourdoctors.index')}">
+            <i class="fa fa-stethoscope"></i>
+            Our Doctors
+          </Link>
+        </li>
+        <li>
           <Link :href="route('cms.services.index')" class="text-white" :class="{'active' : route().current('cms.services.index')}">
             <i class="fa fa-tools"></i>
             Services
+          </Link>
+        </li>
+        <li>
+          <Link :href="route('cms.ohp.index')" class="text-white" :class="{'active' : route().current('cms.ohp.index')}">
+            <i class="fa fa-users"></i>
+            Our Happy Patients
+          </Link>
+        </li>
+        <li>
+          <Link :href="route('cms.aboutus.index')" class="text-white" :class="{'active' : route().current('cms.aboutus.index')}">
+            <i class="fa fa-book-open"></i>
+            About Us
           </Link>
         </li>
         <li>
@@ -34,12 +52,6 @@
             <i class="fa fa-store"></i>
             Branches
           </Link>
-        </li>
-        <li>
-          <a class="text-white">
-            <i class="fa fa-users"></i>
-            Doctors
-          </a>
         </li>
         <li class="mt-auto">
           <a class="text-white">

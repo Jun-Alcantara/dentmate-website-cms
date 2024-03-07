@@ -14,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [SiteController::class, 'homepage'])->name('site.homepage');
+Route::get('', [SiteController::class, 'homepage'])->name('site.homepage');
+Route::get('doctors', [SiteController::class, 'ourDoctors'])->name('site.ourDoctors');
+Route::get('services', [SiteController::class, 'services'])->name('site.services');
+Route::get('our-happy-patients', [SiteController::class, 'ourHappyPatients'])->name('site.ohp');
+Route::get('about-us', [SiteController::class, 'aboutUs'])->name('site.aboutUs');

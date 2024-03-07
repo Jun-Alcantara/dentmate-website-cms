@@ -34,9 +34,22 @@ class BranchesController extends Controller
             Storage::put($path, file_get_contents($request->file('image')));
         }
 
+        if ($request->has('bannerImage') && ! is_null($request->bannerImage)) {
+            $image = $request->file('bannerImage');
+            $extension = $image->extension();
+            $uniqueFilename = now()->timestamp;
+            $bannerPath = "images/branches-banner-$uniqueFilename.$extension";
+
+            Storage::put($path, file_get_contents($request->file('bannerImage')));
+        }
+
         $data = $request->only(['name','address','email','contact_number','facebook',]);
         if (isset($path)) {
             $data['photo_url'] = $path;
+        }
+
+        if (isset($bannerPath)) {
+            $data['banner_image'] = $bannerPath;
         }
 
         Branch::create($data);
@@ -56,6 +69,8 @@ class BranchesController extends Controller
 
     public function update(Request $request)
     {
+        // return $request->all();
+
         $request->validate([
             'name' => 'required',
             'address'=> 'required',
@@ -70,7 +85,7 @@ class BranchesController extends Controller
         $branch->contact_number = $request->contact_number;
         $branch->facebook = $request->facebook;
 
-        if ($request->has('image') && ! is_null($request->image)) {
+        if ($request->hasFile('image') && ! is_null($request->image)) {
             $image = $request->file('image');
             $extension = $image->extension();
             $uniqueFilename = now()->timestamp;
@@ -79,6 +94,17 @@ class BranchesController extends Controller
             Storage::put($path, file_get_contents($request->file('image')));
 
             $branch->photo_url = $path;
+        }
+
+        if ($request->hasFile('bannerImage') && ! is_null($request->bannerImage)) {
+            $image = $request->file('bannerImage');
+            $extension = $image->extension();
+            $uniqueFilename = now()->timestamp;
+            $bannerImage = "images/branches-banner-$uniqueFilename.$extension";
+
+            Storage::put($bannerImage, file_get_contents($request->file('bannerImage')));
+
+            $branch->banner_image = $bannerImage;
         }
 
         $branch->save();

@@ -1,8 +1,8 @@
 <section id="booking-form-section" class="bg-white">
-  <div class="max-w-screen-xl mx-auto py-[50px]">
+  <div class="max-w-screen-xl mx-auto px-5 py-[50px]">
     <h3 class="text-4xl font-semibold text-[#083d67]">Book Now</h3>
-    <div class="mt-2 flex gap-[25px]">
-      <div class="basis-[50%]">
+    <div class="mt-2 flex flex-col md:flex-row gap-[25px]">
+      <div class="md:basis-[50%]">
         <p class="mb-3">
           Experience Dental Care at its Finest! Visit and book at Dentmate Dental Clinic of your choice! 
         </p>

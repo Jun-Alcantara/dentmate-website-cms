@@ -4,6 +4,7 @@
   const confirmationModal = confirmationModalState()
 
   const handleConfirm = () => {
+    confirmationModal.setConfirming(true)
     confirmationModal.confirmed()
   }
 </script>
@@ -19,7 +20,9 @@
           <i class="fa fa-times"></i> Cancel
         </button>
         <button @click="handleConfirm" class="btn btn-error text-white">
-          <i class="fa fa-trash"></i> Delete
+          <span v-if="confirmationModal.confirming" class="loading loading-ring loading-md"></span>
+          <i v-else class="fa fa-trash"></i>
+          Delete
         </button>
       </div>
     </div>

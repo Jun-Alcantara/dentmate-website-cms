@@ -1,5 +1,6 @@
 <script setup>
   import { createEditModalState } from '@/stores/branchState'
+  import FilePicker from '../components/FilePicker.vue';
 
   const state = createEditModalState()
 
@@ -7,6 +8,10 @@
 
   const handleFilePick = (e) => {
     form.image = e.target.files[0]
+  }
+
+  const handleBannerImagePick = (e) => {
+    form.bannerImage = e.target.files[0]
   }
 
   const handleFormSubmit = () => {
@@ -41,11 +46,22 @@
       </form>
       <div class="mt-1">
 
-        <div>
-          <div class="label">
-            <span class="label-text">Branch Photo</span>
+        <div class="flex gap-3">
+          <div class="basis-1/2">
+            <FilePicker 
+              label="Branch Banner"
+              :src="form.bannerImage"
+              @fileSelected="handleBannerImagePick"
+            />
           </div>
-          <input @change="handleFilePick" type="file" class="file-input file-input-bordered w-full" accept="image/png, image/jpeg" />
+
+          <div class="basis-1/2">
+            <FilePicker 
+              label="Branch Photo"
+              :src="form.image"
+              @fileSelected="handleFilePick"
+            />
+          </div>
         </div>
 
         <div class="form-control mt-3">
@@ -91,9 +107,9 @@
         </div>
 
         <div class="flex justify-end gap-3 mt-5">
-          <button @click="debug" class="btn bg-fontPrimary text-white">
+          <!-- <button @click="debug" class="btn bg-fontPrimary text-white">
             View
-          </button>
+          </button> -->
           <button @click="handleFormSubmit" class="btn bg-fontSecondary">
             <i class="fa fa-save"></i> Save Branch Details
           </button>

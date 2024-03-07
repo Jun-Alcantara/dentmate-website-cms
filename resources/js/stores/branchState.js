@@ -8,6 +8,7 @@ export const createEditModalState = defineStore("createEditModal", () => {
   const form = useForm({
     id: null,
     image: null,
+    bannerImage: null,
     name: '',
     address: '',
     email: '',
@@ -15,8 +16,6 @@ export const createEditModalState = defineStore("createEditModal", () => {
     facebook: ''
   })
   const formOperation = ref('create')
-
-  console.log(form)
 
   const open = () => createEditModalState.value = true
   const close = () => {
@@ -28,6 +27,8 @@ export const createEditModalState = defineStore("createEditModal", () => {
 
   const setBranch = (b) => {
     form.id = b.id
+    form.image = b.photo_url
+    form.bannerImage = b.banner_image
     form.name = b.name
     form.address = b.address
     form.email = b.email

@@ -7,14 +7,17 @@ use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Banner;
 
 class ServicesController extends Controller
 {
     public function index()
     {
-        $services = Services::all();
+        $services = Services::whereServiceListType('normal')->get();
+        $otherServices = Services::whereServiceListType('others')->get();
+        $banners = Banner::wherePage('services')->get();
 
-        return inertia('CMS/Services', compact('services'));
+        return inertia('CMS/Services', compact('services', 'banners', 'otherServices'));
     }
 
     public function addService(Request $request)
@@ -66,5 +69,20 @@ class ServicesController extends Controller
 
         return back()
             ->with('notification.success', 'A service has been deleted');
+    }
+
+    public function updateOtherServices(Request $request)
+    {
+        $otherServices = explode(PHP_EOL, $request->services);
+
+        Services::whereServiceListType('others')->delete();
+
+        foreach ($otherServices as $service) {
+            Services::create([
+                'name' => $service, 
+                'service_list_type' => 'others',
+                'created_by' => Auth::user()->id
+            ]);
+        }
     }
 }

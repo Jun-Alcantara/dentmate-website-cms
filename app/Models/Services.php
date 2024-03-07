@@ -9,5 +9,5 @@ class Services extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['photo_url', 'name', 'description', 'created_by'];
+    protected $fillable = ['photo_url', 'name', 'description', 'service_list_type', 'created_by'];
 }

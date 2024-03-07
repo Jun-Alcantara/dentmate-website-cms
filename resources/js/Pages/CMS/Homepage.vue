@@ -1,4 +1,6 @@
 <script setup>
+  import { ref } from 'vue'
+
   import BannerImagesTab from '@/Pages/CMS/HomepageComponents/BannerImagesTab.vue'
   import WhyDentmateTab from '@/Pages/CMS/HomepageComponents/WhyDentmateTab.vue'
   import BeforeAndAfterTab from '@/Pages/CMS/HomepageComponents/BeforeAndAfterTab.vue';
@@ -10,6 +12,12 @@
     slot3: Object,
     beforeAndAfter: Object
   })
+
+  const activeTab = ref(1)
+
+  const handleTabClick = (tabIndex) => {
+    activeTab.value = tabIndex
+  }
 </script>
 
 <script>
@@ -27,21 +35,14 @@
       Homepage
     </h1>
 
-    <div role="tablist" class="tabs tabs-lifted mt-7">
-      <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Banner Images" checked />
-      <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <BannerImagesTab :images="banners" />
-      </div>
-
-      <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Why Dentmate?" />
-      <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <WhyDentmateTab :slot1="slot1" :slot2="slot2" :slot3="slot3"  />
-      </div>
-
-      <input type="radio" name="my_tabs_2" role="tab" class="tab min-w-[190px]" aria-label="Before And After Slider" />
-      <div role="tabpanel" class="tab-content bg-base-100 border-base-300 rounded-box p-6">
-        <BeforeAndAfterTab :images="beforeAndAfter" />
-      </div>
+    <div role="tablist" class="tabs tabs-bordered my-7">
+      <a @click="handleTabClick(1)" role="tab" class="tab" :class="{'tab-active': activeTab == 1}">Banner Images</a>
+      <a @click="handleTabClick(2)" role="tab" class="tab" :class="{'tab-active': activeTab == 2}">Why Dentmate?</a>
+      <a @click="handleTabClick(3)" role="tab" class="tab" :class="{'tab-active': activeTab == 3}">Before & After Slider</a>
     </div>
+
+    <BannerImagesTab v-if="activeTab == 1" :images="banners" />
+    <WhyDentmateTab v-if="activeTab == 2" :slot1="slot1" :slot2="slot2" :slot3="slot3" />
+    <BeforeAndAfterTab v-if="activeTab == 3" :images="beforeAndAfter" />
   </div>
 </template> 
