@@ -75,26 +75,13 @@
         </ul>
         <div class="border-b-[1px] border-white w-full md:hidden"></div>
         <ul class="my-5 px-5">
-          <li class="text-white">
-            <i class="fa fa-facebook"></i> &nbsp;
-            Dentmate San Juan - Facebook
-          </li>
-          <li class="text-white">
-            <i class="fa fa-facebook"></i> &nbsp;
-            Dentmate San Juan - Facebook
-          </li>
-          <li class="text-white">
-            <i class="fa fa-facebook"></i> &nbsp;
-            Dentmate San Juan - Facebook
-          </li>
-          <li class="text-white">
-            <i class="fa fa-facebook"></i> &nbsp;
-            Dentmate San Juan - Facebook
-          </li>
-          <li class="text-white">
-            <i class="fa fa-facebook"></i> &nbsp;
-            Dentmate San Juan - Facebook
-          </li>
+          @foreach($branches as $branch)
+            <li class="text-white">
+              <a href="{{ $branch->facebook }}" target="_blank">
+                {{ $branch->name }} - Facebook
+              </a>
+            </li>
+          @endforeach
         </ul>
       </div>
     </section>
