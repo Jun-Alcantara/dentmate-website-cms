@@ -85,7 +85,7 @@
   <script>
     $('#banner-slider').slick({
       arrows: false,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 2000,
     });
 

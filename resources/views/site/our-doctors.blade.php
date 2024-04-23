@@ -47,8 +47,8 @@
               </div>
               <div class=" flex justify-center items-center p-3">
                 <div>
-                  <h3 class="text-center text-fontPrimary font-bold">Doctor Name</h3>
-                  <h5 class="text-center ">Pasig Branch</h5>
+                  <h3 class="text-center text-fontPrimary font-bold">{{ $doctor->name }}</h3>
+                  <h5 class="text-center ">{{ $doctor->branch->name }}</h5>
                 </div>
               </div>
             </div>

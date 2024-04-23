@@ -36,7 +36,7 @@ class SiteController extends Controller
     {
         $content = OurDoctorsContent::first();
         $banners = Banner::wherePage('our-doctors')->get();
-        $doctors = Doctor::all();
+        $doctors = Doctor::orderBy('branch_id')->with('branch')->get();
 
         return view('site.our-doctors', compact('content', 'banners', 'doctors'));
     }
