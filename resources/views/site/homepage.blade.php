@@ -5,8 +5,8 @@
     <div class="">
       <div id="banner-slider">
         @foreach($banners as $banner)
-          <div class="aspect-video overflow-hidden">
-            <img src="{{ generate_image_url($banner->url) }}" alt="Banners" class="w-full aspect-video object-cover">
+          <div class="aspect-video overflow-hidden homepage-slider-item">
+            <img src="{{ generate_image_url($banner->url) }}" alt="Banners" class="w-full h-full max-h-full aspect-video object-cover">
           </div>
         @endforeach
       </div>
@@ -85,7 +85,7 @@
   <script>
     $('#banner-slider').slick({
       arrows: false,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2000,
     });
 
