@@ -17,7 +17,7 @@
   <article id="brand-story" class="bg-white">
     <div class="max-w-screen-xl mx-auto px-5">
       <div class="flex flex-col md:flex-row py-[50px] md:py-[90px]" data-aos="fade-left">
-        <div class="basis-[25%]">
+        <div class="basis-[25%] md:pt-[85px]">
           <div class="aspect-square border-2 boreder-red">
             <img src="{{ generate_image_url($content->our_story_photo_url) }}" class="w-full h-full object-cover">
           </div>
@@ -39,7 +39,7 @@
           </div>
           <p>{!! nl2br($content->founders_writeup) !!}</p>
         </div>
-        <div class="basis-[25%]">
+        <div class="basis-[25%] md:pt-[85px]">
           <div class="aspect-square border-2 boreder-red">
             <img src="{{ generate_image_url($content->founders_photo_url) }}" class="w-full h-full object-cover">
           </div>
