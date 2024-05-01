@@ -89,14 +89,14 @@ html {
   }
   
   .testimonial blockquote:before {
-    top: 0;
+    top: 20px;
     left: 10px;
   }
   
   .testimonial blockquote:after {
     content: "\201D";
     right: 10px;
-    bottom: -0.5em;
+    bottom: -10px;
   }
   
   .div.left-quote {

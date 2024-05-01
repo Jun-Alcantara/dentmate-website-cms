@@ -20,7 +20,7 @@
         @endphp
         <div class="flex md:mb-[70px] <?php if ($i % 2 === 0) { echo 'flex-row-reversexx'; } ?>" data-aos="slide-up">
           <div>
-            <figure class="aspect-square w-[100px]">
+            <figure class="aspect-square w-[400px]">
               <img class="w-full h-full object-cover rounded-md" 
                 src="{{ $testimonialAvatar }}" 
                 alt=""
@@ -29,7 +29,7 @@
           </div>
           <div class="<?php if ($i % 2 === 0) { echo 'right-quotexx'; } else { echo 'left-quotexx'; } ?>"></div>
           <div class="testimonial">
-            <blockquote class="!mt-0">
+            <blockquote class="!mt-0 h-full flex items-center">
               {{ $testimonial->testimonial }}
             </blockquote>
           </div>
