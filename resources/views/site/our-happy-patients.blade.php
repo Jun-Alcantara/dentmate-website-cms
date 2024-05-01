@@ -18,7 +18,7 @@
             $testimonialAvatar = generate_image_url($testimonial->photo_url);
           }
         @endphp
-        <div class="flex md:mb-[70px] <?php if ($i % 2 === 0) { echo 'flex-row-reversexx'; } ?>" data-aos="slide-up">
+        <div class="flex md:mb-[70px] <?php if ($i % 2 === 0) { echo 'flex-row-reversexx'; } ?>" data-aos="slide-left">
           <div>
             <figure class="aspect-square w-[400px]">
               <img class="w-full h-full object-cover rounded-md" 
