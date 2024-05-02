@@ -22,8 +22,8 @@
     <nav class="bg-white shadow border-gray-200 max-w-full overflow-hidden border-2 border-red-"> 
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="./images/logo.jpg" class="h-12" alt="Dentmate Logo" />
-          <span class="self-center text-2xl font-bold text-fontPrimary whitespace-nowrap">Dentmate</span>
+          <img src="./images/logo.png" class="h-12" alt="Dentmate Logo" />
+          <span class="self-center text-2xl font-bold text-fontPrimary whitespace-nowrap"></span>
         </a>
         <button id="navbar-toggle" data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
@@ -46,7 +46,7 @@
               <a href="{{ route('site.aboutUs') }}" class="navigation-item" aria-current="page">About Us</a>
             </li>
             <li>
-              <a href="#booking-form-section" class="navigation-item bg-[#083d67] !px-[20px] !py-[10px] !text-[white] rounded-lg" aria-current="page">Book Now</a>
+              <a href="#booking-form-section" class="navigation-item bg-fontSecondary !px-[20px] !py-[10px] !text-[black] rounded-lg" aria-current="page">Book an appointment</a>
             </li>
           </ul>
         </div> 
