@@ -99,6 +99,9 @@
   const currentDate = new Date().toISOString().split('T')[0];
   const scheduleMap = []
   let availableDates = {}
+  let datePicker = flatpickr('#booking-date', {
+        enable: []
+      })
 
   $(document).ready(() => {
     fetch(`${baseUrl}/available-clinics`)
@@ -127,9 +130,7 @@
           availableDates[scheduleDate] = Object.values(date)[0]
         })
 
-        $("#booking-date").flatpickr({
-          enable: Object.keys(availableDates)
-        });
+        datePicker.set('enable', Object.keys(availableDates))
       })
   })
 
@@ -219,8 +220,8 @@
     })
   })
 
-  $("#booking-date").flatpickr({
-    dateFormat: "F j, Y",
-    enable: []
-  });
+  // $("#booking-date").flatpickr({
+  //   dateFormat: "F j, Y",
+  //   enable: []
+  // });
 </script>
