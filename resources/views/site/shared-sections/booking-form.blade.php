@@ -6,6 +6,18 @@
         <p class="mb-3">
           Experience Dental Care at its Finest! Visit and book at Dentmate Dental Clinic of your choice! 
         </p>
+
+        <div id="error-container" class="hidden">
+          <h3 class="text-xl text-red-500">There are errors</h3>
+          <ul id="error-list" class="list-disc list-inside text-red-500 mb-3">
+          </ul>
+        </div>
+
+        <div id="success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
+          <strong class="font-bold">Success!</strong>
+          <span class="block sm:inline">We have received your booking request. Please wait for the cofirmation</span>
+        </div>
+
         <div class="flex flex-col md:flex-row md:gap-[25px]">
           <div class="basis-[50%]">
             <div class="mb-3">
@@ -76,10 +88,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr@4.6.13/dist/themes/material_blue.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   const baseUrl = `http://3.141.43.249/api`
   const clinicDropdown = $('#clinics')
   const slotsDropdown = $('#slots')
+  const errorContainer = $('#error-container')
+  const errorList = $('#error-list')
+  const successMessage = $("#success-message")
   const currentDate = new Date().toISOString().split('T')[0];
   const scheduleMap = []
   let availableDates = {}
@@ -131,6 +147,8 @@
     })
   })
 
+  let processing = false
+
   $('#book-now-button').click((e) => {
     payload = {
       firstname: $('#first_name').val(),
@@ -143,6 +161,54 @@
       email: $('#email').val(),
       timeslot_id: $('#slots').val()
     }
+
+    if (processing) {
+      return
+    }
+
+    processing = true
+
+    errorContainer.addClass('hidden')
+    successMessage.addClass('hidden')
+    errorList.html('')
+
+    axios.post(`${baseUrl}/book-appointment`, payload)
+      .then((response) => {
+        successMessage.removeClass('hidden')
+
+        $('#first_name').val('')
+        $('#middle_name').val('')
+        $('#last_name').val('')
+        $('#gender').val('')
+        $('#clinics').val('')
+        $('#message').val('')
+        $('#mobile_number').val('')
+        $('#email').val('')
+        $('#slots').val('')
+        $('#booking-date').val('')
+
+        processing = false
+      })
+      .catch((error) => {
+        let responseData = error.response.data
+        let errors = responseData.errors
+
+        for (const key in errors) {
+          if (errors.hasOwnProperty(key)) {
+            let errorMessage = errors[key][0]
+
+            errorList.append(`
+              <li>${errorMessage}</li>
+            `)
+          }
+        }
+
+        errorContainer.removeClass('hidden')
+
+        processing = false
+      })
+
+    return;
 
     fetch(`${baseUrl}/book-appointment`, {
       method: 'POST',
