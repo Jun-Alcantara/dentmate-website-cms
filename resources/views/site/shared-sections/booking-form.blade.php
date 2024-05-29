@@ -168,19 +168,19 @@
   //     })
   // })
 
-  $('#booking-date').change((e) => {
-    let selectedDate = $(e.target).val()
-    let slots = availableDates[selectedDate]
+  // $('#booking-date').change((e) => {
+  //   let selectedDate = $(e.target).val()
+  //   let slots = availableDates[selectedDate]
 
-    slotsDropdown.html('')
-    slotsDropdown.append(`<option>Select time slot</option>`)
+  //   slotsDropdown.html('')
+  //   slotsDropdown.append(`<option>Select time slot</option>`)
 
-    slots.forEach((slot) => {
-      slotsDropdown.append(
-        `<option value="${slot.timeslot_id}">${slot.start_time} to ${slot.end_time}</option>`
-      )
-    })
-  })
+  //   slots.forEach((slot) => {
+  //     slotsDropdown.append(
+  //       `<option value="${slot.timeslot_id}">${slot.start_time} to ${slot.end_time}</option>`
+  //     )
+  //   })
+  // })
 
   let processing = false
 
