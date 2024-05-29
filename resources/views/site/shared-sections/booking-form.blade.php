@@ -61,6 +61,12 @@
               <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
+              <label for="service" class="block mb-2 text-sm font-medium text-gray-900">Select Service:</label>
+              <select id="service" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                <option selected>Choose Service</option>
+              </select>
+            </div>
+            <div class="mb-3">
               <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Select your date of visit:</label>
               <input id="booking-date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Click here to select date">
             </div>
@@ -89,19 +95,22 @@
 <link rel="stylesheet" href="https://npmcdn.com/flatpickr@4.6.13/dist/themes/material_blue.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.11/dayjs.min.js" integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  const baseUrl = `http://3.141.43.249/api`
+  const baseUrl = `http://admin.dentmate.ph/api`
   const clinicDropdown = $('#clinics')
   const slotsDropdown = $('#slots')
+  const servicesDropdown = $('#service')
   const errorContainer = $('#error-container')
   const errorList = $('#error-list')
   const successMessage = $("#success-message")
-  const currentDate = new Date().toISOString().split('T')[0];
+  const tomorrowDate = dayjs().add(1, 'day').format('YYYY-MM-DD');
   const scheduleMap = []
   let availableDates = {}
   let datePicker = flatpickr('#booking-date', {
-        enable: []
-      })
+    enable: [],
+    minDate: tomorrowDate
+  })
 
   $(document).ready(() => {
     fetch(`${baseUrl}/available-clinics`)
@@ -112,6 +121,18 @@
         clinics.forEach(clinic => {
           clinicDropdown.append(
             `<option value="${clinic.id}">${clinic.name}</option>`
+          )
+        })
+      })
+
+    fetch(`${baseUrl}/available-services`)
+      .then(response => response.json())
+      .then((response) => {
+        let services = response.data.services
+
+        services.forEach(service => {
+          servicesDropdown.append(
+            `<option value="${service.id}">${service.name} [${service.duration}]</option>`
           )
         })
       })
