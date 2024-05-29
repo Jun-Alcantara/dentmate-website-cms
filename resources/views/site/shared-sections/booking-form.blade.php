@@ -74,6 +74,20 @@
               <label for="slots" class="block mb-2 text-sm font-medium text-gray-900">Select your time slot:</label>
               <select id="slots" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Select time slot</option>
+                <option value="08:00-08:30">08:00 AM - 08:30 AM</option>
+                <option value="08:30-09:00">08:30 AM - 09:00 AM</option>
+                <option value="09:00-09:30">09:00 AM - 09:30 AM</option>
+                <option value="09:30-10:00">09:30 AM - 10:00 AM</option>
+                <option value="10:00-10:30">10:00 AM - 10:30 AM</option>
+                <option value="10:30-11:00">10:30 AM - 11:00 AM</option>
+                <option value="11:00-11:30">11:00 AM - 11:30 AM</option>
+                <option value="11:30-12:00">11:30 AM - 12:00 NN</option>
+                <option value="12:00-12:30">12:00 NN - 12:30 NN</option>
+                <option value="12:30-13:00">12:30 NN - 01:00 PM</option>
+                <option value="13:00-13:30">01:00 PM - 01:30 PM</option>
+                <option value="13:30-14:00">01:30 PM - 02:00 PM</option>
+                <option value="14:00-14:30">02:00 PM - 02:30 PM</option>
+                <option value="14:30-15:00">02:30 PM - 03:00 PM</option>
               </select>
             </div>
           </div>
@@ -108,7 +122,6 @@
   const scheduleMap = []
   let availableDates = {}
   let datePicker = flatpickr('#booking-date', {
-    enable: [],
     minDate: tomorrowDate
   })
 
@@ -138,22 +151,22 @@
       })
   })
 
-  $('#clinics').change((e) => {
-    let selectedBranch = $(e.target).val()
+  // $('#clinics').change((e) => {
+  //   let selectedBranch = $(e.target).val()
 
-    fetch(`${baseUrl}/available-slots?clinic_id=${selectedBranch}`)
-      .then(response => response.json())
-      .then(response => {
-        let schedules = response.data.timeslots
+  //   fetch(`${baseUrl}/available-slots?clinic_id=${selectedBranch}`)
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       let schedules = response.data.timeslots
 
-        schedules.forEach((date) => {
-          let scheduleDate = Object.keys(date)[0]
-          availableDates[scheduleDate] = Object.values(date)[0]
-        })
+  //       schedules.forEach((date) => {
+  //         let scheduleDate = Object.keys(date)[0]
+  //         availableDates[scheduleDate] = Object.values(date)[0]
+  //       })
 
-        datePicker.set('enable', Object.keys(availableDates))
-      })
-  })
+  //       datePicker.set('enable', Object.keys(availableDates))
+  //     })
+  // })
 
   $('#booking-date').change((e) => {
     let selectedDate = $(e.target).val()
@@ -172,6 +185,9 @@
   let processing = false
 
   $('#book-now-button').click((e) => {
+    let timeslot = $('#slots').val()
+    let [start, end] = timeslot.split('-')
+
     payload = {
       firstname: $('#first_name').val(),
       middlename: $('#middle_name').val(),
@@ -181,7 +197,10 @@
       remakrs: $('#message').val(),
       mobile_no: $('#mobile_number').val(),
       email: $('#email').val(),
-      timeslot_id: $('#slots').val()
+      start_time: start,
+      end_time: end,
+      service_id: $('#service').val(),
+      date: $('#booking-date').val()
     }
 
     if (processing) {
