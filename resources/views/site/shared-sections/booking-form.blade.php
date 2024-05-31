@@ -88,6 +88,8 @@
                 <option value="13:30-14:00">01:30 PM</option>
                 <option value="14:00-14:30">02:00 PM</option>
                 <option value="14:30-15:00">02:30 PM</option>
+                <option value="15:00-15:30">03:00 PM</option>
+                <option value="15:30-16:00">03:30 PM</option>
               </select>
             </div>
           </div>
