@@ -61,7 +61,7 @@
               <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="service" class="block mb-2 text-sm font-medium text-gray-900">Select Service:</label>
+              <label for="service" class="block mb-2 text-sm font-medium text-gray-900">Select Service: <span class="text-red-500 text-xl">*</span></label>
               <select id="service" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Choose Service</option>
               </select>
