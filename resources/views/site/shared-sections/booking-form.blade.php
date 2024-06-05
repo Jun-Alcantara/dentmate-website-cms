@@ -21,7 +21,7 @@
         <div class="flex flex-col md:flex-row md:gap-[25px]">
           <div class="basis-[50%]">
             <div class="mb-3">
-              <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">First Name:</label>
+              <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">First Name: <span class="text-red-500 text-xl">*</span></label>
               <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
@@ -29,11 +29,11 @@
               <input type="text" id="middle_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name:</label>
+              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name: <span class="text-red-500 text-xl">*</span></label>
               <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender:</label>
+              <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender: <span class="text-red-500 text-xl">*</span></label>
               <select id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Select your gender</option>
                 <option value="male">Male</option>
@@ -41,7 +41,7 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for="clinics" class="block mb-2 text-sm font-medium text-gray-900">Select Branch:</label>
+              <label for="clinics" class="block mb-2 text-sm font-medium text-gray-900">Select Branch: <span class="text-red-500 text-xl">*</span></label>
               <select id="clinics" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Choose Branch</option>
               </select>
@@ -53,7 +53,7 @@
           </div>
           <div class="basis-[50%]">
             <div class="mb-3">
-              <label for="mobile_number" class="block mb-2 text-sm font-medium text-gray-900">Mobile Number:</label>
+              <label for="mobile_number" class="block mb-2 text-sm font-medium text-gray-900">Mobile Number: <span class="text-red-500 text-xl">*</span></label>
               <input type="text" id="mobile_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
@@ -67,11 +67,11 @@
               </select>
             </div>
             <div class="mb-3">
-              <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Select your date of visit:</label>
+              <label for="booking-date" class="block mb-2 text-sm font-medium text-gray-900">Select your date of visit: <span class="text-red-500 text-xl">*</span></label>
               <input id="booking-date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Click here to select date">
             </div>
             <div class="mb-3">
-              <label for="slots" class="block mb-2 text-sm font-medium text-gray-900">Select your time slot:</label>
+              <label for="slots" class="block mb-2 text-sm font-medium text-gray-900">Select your time slot: <span class="text-red-500 text-xl">*</span></label>
               <select id="slots" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Select time slot</option>
                 <option value="08:00-08:30">08:00 AM</option>
@@ -124,7 +124,7 @@
   const scheduleMap = []
   let availableDates = {}
   let datePicker = flatpickr('#booking-date', {
-    minDate: tomorrowDate
+    minDate: dayjs().format('YYYY-MM-DD')
   })
 
   $(document).ready(() => {
@@ -152,37 +152,6 @@
         })
       })
   })
-
-  // $('#clinics').change((e) => {
-  //   let selectedBranch = $(e.target).val()
-
-  //   fetch(`${baseUrl}/available-slots?clinic_id=${selectedBranch}`)
-  //     .then(response => response.json())
-  //     .then(response => {
-  //       let schedules = response.data.timeslots
-
-  //       schedules.forEach((date) => {
-  //         let scheduleDate = Object.keys(date)[0]
-  //         availableDates[scheduleDate] = Object.values(date)[0]
-  //       })
-
-  //       datePicker.set('enable', Object.keys(availableDates))
-  //     })
-  // })
-
-  // $('#booking-date').change((e) => {
-  //   let selectedDate = $(e.target).val()
-  //   let slots = availableDates[selectedDate]
-
-  //   slotsDropdown.html('')
-  //   slotsDropdown.append(`<option>Select time slot</option>`)
-
-  //   slots.forEach((slot) => {
-  //     slotsDropdown.append(
-  //       `<option value="${slot.timeslot_id}">${slot.start_time} to ${slot.end_time}</option>`
-  //     )
-  //   })
-  // })
 
   let processing = false
 
@@ -218,6 +187,13 @@
     axios.post(`${baseUrl}/book-appointment`, payload)
       .then((response) => {
         successMessage.removeClass('hidden')
+
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "We have received your booking request. Please wait for the SMS confirmation.",
+          showConfirmButton: true,
+        });
 
         $('#first_name').val('')
         $('#middle_name').val('')
@@ -261,9 +237,23 @@
       console.log(response)
     })
   })
+  
+  $('#booking-date').change((e) => {
+    let selectedDate = dayjs($(e.target).val())
 
-  // $("#booking-date").flatpickr({
-  //   dateFormat: "F j, Y",
-  //   enable: []
-  // });
+    $('#slots option').each(function() {
+      $(this).prop('disabled', false);
+    });
+    
+    if (selectedDate.isSame(dayjs(), 'day')) {
+      let currentHour = dayjs().format('HH')
+
+      $('#slots option').each(function() {
+        let optionHour = $(this).val().split(':')[0];
+        if (parseInt(optionHour) < parseInt(currentHour)) {
+            $(this).prop('disabled', true);
+        }
+      });
+    }
+  })
 </script>
