@@ -14,7 +14,7 @@
   </section>
 
   <section class="bg-white">
-    <div class="max-w-screen-xl mx-auto  px-5 py-7 md:pt-[90px] pb-[20px] md:pb-[30px]">
+    <div class="max-w-screen-xl mx-auto  px-5 py-3 md:py-7 md:pt-[90px] pb-[20px] md:pb-[30px]">
       <div class="styled-title ">
         <h1 class="text-fontPrimary text-4xl text-center font-bold inline-block">Why Dentmate?</h1>
       </div>
