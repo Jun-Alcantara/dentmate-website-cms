@@ -22,12 +22,14 @@
     <div class="max-w-screen-xl mx-auto px-5 flex flex-col md:flex-row justify-center md:gap-[60px] md:pb-[90px]" data-aos="zoom-in">
       @for($i = 1; $i <= 3; $i++)
         @if(isset($whyDentmate) && isset($whyDentmate[$i]) && $wd = $whyDentmate[$i])
-        <div data-aos="zoom-in" class="basis-4/12 mb-7">
-          <img src="{{ generate_image_url($wd['photo_url']) }}" alt="" class="block shadow-md rounded-md">
-          <h3 class="text-2xl lg:text-3xl lg:pt-1 text-fontSecondary font-semibold pb-1 text-center md:text-left md:mt-3">{{ $wd['title'] }}</h3>
-          <p class="text-center md:text-left text-fontPrimary">
-            {{ $wd['description'] }}
-          </p>
+        <div data-aos="zoom-in" class="basis-4/12 mb-7 flex gap-[10px] md:block">
+          <img src="{{ generate_image_url($wd['photo_url']) }}" alt="" class="block shadow-md rounded-md w-[35%] md:w-full">
+          <div>
+            <h3 class="text-2xl lg:text-3xl lg:pt-1 text-fontSecondary font-semibold pb-1 md:text-left md:mt-3">{{ $wd['title'] }}</h3>
+            <p class="md:text-left text-fontPrimary">
+              {{ $wd['description'] }}
+            </p>
+          </div>
         </div>
         @endif
       @endfor
