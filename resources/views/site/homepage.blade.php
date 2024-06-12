@@ -58,7 +58,7 @@
     <div class="max-w-screen-xl mx-auto md:mt-8 lg:mt-10">
       <div class="flex flex-wrap justify-center">
         @foreach ($services as $service)
-          <a href="/" class="basis-1/2 md:basis-4/12 lg:basis-3/12" data-aos="fade-up">
+          <a href="/services/{{ $service->slug }}" class="basis-1/2 md:basis-4/12 lg:basis-3/12" data-aos="fade-up">
             <div class="p-1 md:p-2">
               <div
                 class="bg-[#083d67] w-full rounded grid place-items-center min-h-[300px] md:h-[200px]"

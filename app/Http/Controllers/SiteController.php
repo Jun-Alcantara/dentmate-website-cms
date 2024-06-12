@@ -65,4 +65,9 @@ class SiteController extends Controller
 
         return view('site.about-us', compact('content', 'founders', 'managers'));
     }
+
+    public function showService(Services $service)
+    {
+        return view('site.service-inner', compact('service'));
+    }
 }
