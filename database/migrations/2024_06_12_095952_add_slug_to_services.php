@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Services::all()->each(function ($service) {
             $slug = str_replace(' ', '-', $service->name) . '-' . now()->timestamp;
-            $service->slug = $slug;
+            $service->slug = strtolower($slug);
             $service->save();
         });
     }

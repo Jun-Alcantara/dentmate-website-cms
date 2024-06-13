@@ -3,10 +3,12 @@
 @section('content')
 
   <section class="bg-gray-100">
-    <div class="max-w-screen-xl mx-auto py-5">
-      <h1 class="text-3xl font-bold text-[#083d67]">{{ $service->name }}</h1>
-      <div class="flex">
-        <div class="basis-[25%]">
+    <div class="max-w-screen-xl mx-auto py-5 px-5">
+      <div class="styled-title">
+        <h1 class="text-3xl font-semibold mb-5 text-fontPrimary">{{ $service->name }}</h1>
+      </div>
+      <div class="flex flex-col md:flex-row">
+        <div class="basis-[25%] mb-2 md:mr-3">
           <img src="/storage/{{ $service->photo_url }}" class="w-full object-cover h-auto">
         </div>
         <div>

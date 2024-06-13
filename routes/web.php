@@ -20,3 +20,4 @@ Route::get('services', [SiteController::class, 'services'])->name('site.services
 Route::get('services/{service}', [SiteController::class, 'showService']);
 Route::get('our-happy-patients', [SiteController::class, 'ourHappyPatients'])->name('site.ohp');
 Route::get('about-us', [SiteController::class, 'aboutUs'])->name('site.aboutUs');
+Route::get('branches/{branch}', [SiteController::class, 'showBranch']);

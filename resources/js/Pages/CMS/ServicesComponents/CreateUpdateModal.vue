@@ -61,7 +61,7 @@
           <span v-if="form.errors.name" class="text-error">{{ form.errors.name }}</span>
         </div>
         <div class="mt-4">
-          <input v-model="form.description" type="text" placeholder="Description" class="input input-bordered w-full">
+          <textarea v-model="form.description" type="text" placeholder="Description" class="input input-bordered w-full" rows="30"></textarea>
         </div>
         <div class="mt-4 flex justify-end">
           <button @click="handleFormSubmit" class="btn bg-fontSecondary"> 

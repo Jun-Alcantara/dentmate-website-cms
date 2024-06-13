@@ -70,4 +70,9 @@ class SiteController extends Controller
     {
         return view('site.service-inner', compact('service'));
     }
+
+    public function showBranch(Branch $branch)
+    {
+        return view('site.branch-inner', compact('branch'));
+    }
 }
