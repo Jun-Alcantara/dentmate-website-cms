@@ -6,8 +6,8 @@
   </div>
   <div class="max-w-screen-xl mx-auto flex flex-wrap justify-center">
     @foreach($branches as $branch)
-      <a href="/branches/{{ $branch->slug }}">
-        <div class="basis-1/2 md:basis-1/3 p-2">
+      <a href="/branches/{{ $branch->slug }}" class="basis-1/2 md:basis-1/3 p-2">
+        <div >
           <img src="{{ generate_image_url($branch->photo_url) }}" class="w-full h-full object-cover rounded-md">
         </div>
       </a>
