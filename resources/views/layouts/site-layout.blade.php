@@ -53,7 +53,7 @@
             <li class="flex items-center text-fontPrimary {{  request()->route()->getName() == "site.aboutUs" ? 'font-bold border-b-2 border-fontSecondary' : '' }}">
               <a href="{{ route('site.aboutUs') }}" class="navigation-item" aria-current="page">About Us</a>
             </li>
-            <li>
+            <li class="hidden md:block">
               <a href="#booking-form-section" class="navigation-item bg-fontSecondary !px-[20px] !py-[10px] !text-[black] rounded-lg" aria-current="page">Book an appointment</a>
             </li>
           </ul>
