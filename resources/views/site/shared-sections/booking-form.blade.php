@@ -90,6 +90,12 @@
                 <option value="14:30-15:00">02:30 PM</option>
                 <option value="15:00-15:30">03:00 PM</option>
                 <option value="15:30-16:00">03:30 PM</option>
+                <option value="16:00-16:30">04:00 PM</option>
+                <option value="16:30-17:00">04:30 PM</option>
+                <option value="17:00-17:30">05:00 PM</option>
+                <option value="17:30-18:00">05:30 PM</option>
+                <option value="18:00-18:30">06:00 PM</option>
+                <option value="18:30-19:00">06:30 PM</option>
               </select>
             </div>
           </div>
