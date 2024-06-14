@@ -1,4 +1,4 @@
-<section class="pb-[90px] bg-gray-100 pt-7">
+<section id="our-branches" class="pb-[90px] bg-gray-100 pt-7">
   <div class="max-w-screen-xl mx-auto text-center mb-2 md:mb-5">
     <div class="styled-title styled-title-center">
       <h1 class="text-4xl font-semibold text-[#083d67]">Our Branches</h1>

@@ -69,16 +69,16 @@
       <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center"> 
         <ul class="flex flex-col md:flex-row text-center gap-[25px] my-5 md:px-5 md:my-10">
           <li>
-            <a href="#" class="text-white">About Us</a>
+            <a href="/about-us" class="text-white">About Us</a>
           </li>
           <li>
-            <a href="#" class="text-white">Our Branches</a>
+            <a href="/#our-branches" class="text-white">Our Branches</a>
           </li>
           <li>
-            <a href="#" class="text-white">Our Services</a>
+            <a href="/services" class="text-white">Our Services</a>
           </li>
           <li>
-            <a href="#" class="text-white">Book Now</a>
+            <a href="/#booking-form-section" class="text-white">Book Now</a>
           </li>
         </ul>
         <div class="border-b-[1px] border-white w-full md:hidden"></div>
