@@ -152,18 +152,45 @@
         let services = response.data.services
 
         services.forEach(service => {
+          let duration = parseDuration(service.duration)
+
           servicesDropdown.append(
-            `<option value="${service.id}">${service.name} [${service.duration}]</option>`
+            `<option 
+              value="${service.id}"
+              data-duration-hours="${duration.hours}"
+              data-duration-minutes="${duration.minutes}"
+            >
+              ${service.name} [${service.duration}]
+            </option>`
           )
         })
       })
   })
 
   let processing = false
+  let selectedServiceDuration = {
+    hours: 0,
+    minutes: 0
+  };
+
+  servicesDropdown.change((e) => {
+    let hours = $(e.target).find('option:selected').data('duration-hours')
+    let minutes = $(e.target).find('option:selected').data('duration-minutes')
+    
+    selectedServiceDuration.hours = hours
+    selectedServiceDuration.minutes = minutes
+
+    console.log(selectedServiceDuration)
+  })
 
   $('#book-now-button').click((e) => {
     let timeslot = $('#slots').val()
     let [start, end] = timeslot.split('-')
+
+    currentDate = dayjs().format('YYYY-MM-DD') + ' ' + start + ':00'
+    end = dayjs(currentDate).add(selectedServiceDuration.hours, 'hour')
+      .add(selectedServiceDuration.minutes, 'minute')
+      .format('HH:mm')
 
     payload = {
       firstname: $('#first_name').val(),
@@ -262,4 +289,30 @@
       });
     }
   })
+
+  function parseDuration(durationStr) {
+    let hours = 0;
+    let minutes = 0;
+    let hrMatch = durationStr.match(/(\d+)\s*hr(s)?/);
+    let minMatch = durationStr.match(/(\d+)\s*min(s)?/);
+
+    if (hrMatch) {
+        hours = parseInt(hrMatch[1], 10);
+    }
+    
+    if (minMatch) {
+        minutes = parseInt(minMatch[1], 10);
+    }
+
+    // Default to 30 minutes if no valid time found
+    if (hours === 0 && minutes === 0) {
+        minutes = 30;
+    }
+
+    // Format minutes to ensure two digits
+    let formattedMinutes = minutes.toString().padStart(2, '0');
+    
+    return {hours, minutes: formattedMinutes}
+    // return `${hours}:${formattedMinutes}`;
+  }
 </script>
