@@ -43,7 +43,7 @@
             <div class="mb-3">
               <label for="clinics" class="block mb-2 text-sm font-medium text-gray-900">Select Branch: <span class="text-red-500 text-xl">*</span></label>
               <select id="clinics" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected>Choose Branch</option>
+                <option value="" selected>Choose Branch</option>
               </select>
             </div>
             <div class="mb-3">
@@ -74,28 +74,6 @@
               <label for="slots" class="block mb-2 text-sm font-medium text-gray-900">Select your time slot: <span class="text-red-500 text-xl">*</span></label>
               <select id="slots" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Select time slot</option>
-                <option value="08:00-08:30">08:00 AM</option>
-                <option value="08:30-09:00">08:30 AM</option>
-                <option value="09:00-09:30">09:00 AM</option>
-                <option value="09:30-10:00">09:30 AM</option>
-                <option value="10:00-10:30">10:00 AM</option>
-                <option value="10:30-11:00">10:30 AM</option>
-                <option value="11:00-11:30">11:00 AM</option>
-                <option value="11:30-12:00">11:30 AM</option>
-                <option value="12:00-12:30">12:00 NN</option>
-                <option value="12:30-13:00">12:30 NN</option>
-                <option value="13:00-13:30">01:00 PM</option>
-                <option value="13:30-14:00">01:30 PM</option>
-                <option value="14:00-14:30">02:00 PM</option>
-                <option value="14:30-15:00">02:30 PM</option>
-                <option value="15:00-15:30">03:00 PM</option>
-                <option value="15:30-16:00">03:30 PM</option>
-                <option value="16:00-16:30">04:00 PM</option>
-                <option value="16:30-17:00">04:30 PM</option>
-                <option value="17:00-17:30">05:00 PM</option>
-                <option value="17:30-18:00">05:30 PM</option>
-                <option value="18:00-18:30">06:00 PM</option>
-                <option value="18:30-19:00">06:30 PM</option>
               </select>
             </div>
           </div>
@@ -123,12 +101,13 @@
   const clinicDropdown = $('#clinics')
   const slotsDropdown = $('#slots')
   const servicesDropdown = $('#service')
+  const bookingDatePicker = $('#booking-date')
   const errorContainer = $('#error-container')
   const errorList = $('#error-list')
   const successMessage = $("#success-message")
-  const tomorrowDate = dayjs().add(1, 'day').format('YYYY-MM-DD');
-  const scheduleMap = []
-  let availableDates = {}
+  const tomorrowDate = dayjs().add(1, 'day').format('YYYY-MM-DD')
+  const blockedSlots = []
+
   let datePicker = flatpickr('#booking-date', {
     minDate: dayjs().format('YYYY-MM-DD')
   })
@@ -167,6 +146,35 @@
       })
   })
 
+  clinicDropdown.change((e) => {
+    generateSlotOptions()
+    let clinic_id = $(e.target).val()
+
+    fetch(`${baseUrl}/clinic-events?clinic_id=${clinic_id}`)
+      .then(response => response.json())
+      .then((response) => {
+        let events = response.data
+        let disabledDates = []
+        
+        events.forEach((event) => {
+          if (event.all_day) {
+            disabledDates.push(event.date)
+          } else {
+            if (! blockedSlots[event.date]) {
+              blockedSlots[event.date] = []
+            }
+
+            blockedSlots[event.date].push({
+              from: event.start_time,
+              to: event.end_time
+            })
+          }
+        })
+        
+        datePicker.set('disable', disabledDates)
+      })
+  })
+
   let processing = false
   let selectedServiceDuration = {
     hours: 0,
@@ -179,8 +187,6 @@
     
     selectedServiceDuration.hours = hours
     selectedServiceDuration.minutes = minutes
-
-    console.log(selectedServiceDuration)
   })
 
   $('#book-now-button').click((e) => {
@@ -272,6 +278,7 @@
   })
   
   $('#booking-date').change((e) => {
+    generateSlotOptions()
     let selectedDate = dayjs($(e.target).val())
 
     $('#slots option').each(function() {
@@ -297,22 +304,68 @@
     let minMatch = durationStr.match(/(\d+)\s*min(s)?/);
 
     if (hrMatch) {
-        hours = parseInt(hrMatch[1], 10);
+      hours = parseInt(hrMatch[1], 10);
     }
     
     if (minMatch) {
-        minutes = parseInt(minMatch[1], 10);
+      minutes = parseInt(minMatch[1], 10);
     }
 
-    // Default to 30 minutes if no valid time found
     if (hours === 0 && minutes === 0) {
-        minutes = 30;
+      minutes = 30;
     }
 
-    // Format minutes to ensure two digits
-    let formattedMinutes = minutes.toString().padStart(2, '0');
+    let formattedMinutes = minutes.toString().padStart(2, '0')
     
     return {hours, minutes: formattedMinutes}
-    // return `${hours}:${formattedMinutes}`;
   }
+
+  function generateSlotOptions(start = 800, end = 1700) {
+    if (clinicDropdown.val() == "") {
+      slotsDropdown.html(`<option>Please select clinic first</option>`)
+      return;
+    }
+
+    if (bookingDatePicker.val() == "") {
+      slotsDropdown.html(`<option>Please select a date</option>`)
+      return
+    }
+
+    const selectedDate = bookingDatePicker.val()
+
+    disabledSlotsFrom = null
+    disabledSlotsTo = null
+    if (blockedSlots[selectedDate]) {
+      disabledSlotsFrom = dayjs().format('YYYY-MM-DD') + ' ' + blockedSlots[selectedDate][0].from
+      disabledSlotsTo = dayjs().format('YYYY-MM-DD') + ' ' + blockedSlots[selectedDate][0].to
+    }
+
+    const startTime = dayjs().hour(8).minute(0)
+    const endTime = dayjs().hour(18).minute(30) 
+
+    let currentTime = startTime
+    let options = `<option selected>Choose slot</option>`
+
+    while (currentTime.isBefore(endTime)) {
+      const nextTime = currentTime.add(30, 'minute')
+      const optionValue = `${currentTime.format('HH:mm')}-${nextTime.format('HH:mm')}`
+      const optionText = `${currentTime.format('hh:mm A')}`
+
+      // Disable the option is the disabledSlotsFrom and disabledSlotsTo are not null
+      if (disabledSlotsFrom && disabledSlotsTo &&
+          currentTime.isAfter(dayjs(disabledSlotsFrom, 'HH:mm')) &&
+          currentTime.isBefore(dayjs(disabledSlotsTo, 'HH:mm'))) {
+          // options += `<option disabled>${optionText} (Blocked)</option>`;
+      } else {
+          options += `<option value="${optionValue}">${optionText}</option>`
+      }
+
+      currentTime = nextTime;
+    }
+
+    console.log(options)
+    slotsDropdown.html(options)
+  }
+
+  generateSlotOptions()
 </script>
