@@ -30,7 +30,7 @@ Route::prefix('site-admin')->group(function () {
         Route::prefix('services')->group(function () {
             Route::get('', [ServicesController::class, 'index'])->name('cms.services.index');
             Route::post('add-service', [ServicesController::class, 'addService'])->name('cms.services.addService');
-            Route::patch('update-service', [ServicesController::class, 'updateService'])->name('cms.services.updateService');
+            Route::post('update-service', [ServicesController::class, 'updateService'])->name('cms.services.updateService');
             Route::delete('delete-service', [ServicesController::class, 'deleteService'])->name('cms.services.deleteService');
 
             Route::patch('update-other-services', [ServicesController::class, 'updateOtherServices'])->name('cms.otherServices.update');
