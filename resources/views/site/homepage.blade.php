@@ -15,8 +15,8 @@
 
   <section class="bg-white">
     <div class="max-w-screen-xl mx-auto px-5 py-3 md:py-7 md:pt-[90px] pb-[20px] md:pb-[30px]">
-      <div class="styled-title ">
-        <h1 class="text-fontPrimary text-4xl text-center font-bold inline-block">Why Dentmate?</h1>
+      <div class="styled-title styled-title-center">
+        <h1 class="text-4xl text-fontPrimary text-center font-semibold">Why Dentmate?</h1>
       </div>
     </div>
     <div class="max-w-screen-xl mx-auto px-5 flex flex-col md:flex-row justify-center md:gap-[60px] md:pb-[90px] mb-[35px]" data-aos="zoom-in">
