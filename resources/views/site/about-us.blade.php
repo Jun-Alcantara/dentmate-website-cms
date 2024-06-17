@@ -48,7 +48,7 @@
 
       <div class="flex flex-wrap justify-center pb-[90px] pt-[30px]">
         @foreach($founders as $founder)
-          <div class="basis-1/1 md:basis-1/2 lg:basis-[25%] w-full p-[20px] flex flex-col" data-aos="fade-up">
+          <div class="basis-1/2 md:basis-1/2 lg:basis-[25%] w-full p-[5px] md:p-[20px] flex flex-col" data-aos="fade-up">
             <img 
               class="aspect-square rounded-full border-[3px] border-fontSecondary object-cover"
               src="{{ generate_image_url($founder->photo_url) }}"
