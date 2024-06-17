@@ -55,6 +55,20 @@ class ServicesController extends Controller
     {
         $service = Services::findOrFail($request->id);
 
+        $path = null;
+        if ($request->has('image') && ! is_null($request->image)) {
+            $image = $request->file('image');
+            $extension = $image->extension();
+            $uniqueFilename = now()->timestamp;
+            $path = "images/services-$uniqueFilename.$extension";
+
+            Storage::put($path, file_get_contents($request->file('image')));
+        }
+
+        if (! is_null($path)) {
+            $service->photo_url = $path;
+        }
+
         $service->name = $request->name;
         $service->description = $request->description;
         $service->save();

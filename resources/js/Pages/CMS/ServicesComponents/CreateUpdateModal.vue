@@ -32,7 +32,7 @@
     if (form.processing) return
 
     if (props.service) {
-      form.patch(route('cms.services.updateService'), {
+      form.post(route('cms.services.updateService'), {
         onSuccess: () => closeModal(),
       })
     } else {
