@@ -2,14 +2,22 @@
 
 @section('styles')
   <style>
-    .slick-slide {
-      height: auto; // ← that must not be ignored
+    .slick-arrow {
+      color: white;
+      padding-left: 20px;
+      padding-right: 20px;
     }
-    .slick-track {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: stretch;
+
+    .slick-prev {
+      background-image: linear-gradient(to right, #000000ba, #00000000);
+    }
+
+    .slick-next {
+      background-image: linear-gradient(to right, #00000000, #000000ba);
+    }
+
+    .slick-custom-arrow {
+      font-size: 40px;
     }
   </style>
 @endsection
@@ -27,6 +35,33 @@
     
 
     <div>
+      @foreach($testimonials as $i => $testimonial)
+        @php 
+          $testimonialAvatar = "https://ui-avatars.com/api/?background=random&size=300&name=$testimonial->name";
+          if ($testimonial->photo_url) {
+            $testimonialAvatar = generate_image_url($testimonial->photo_url);
+          }
+        @endphp
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-12 md:col-span-3 h-[400px] bg-yellow-400">
+            <img src="{{ $testimonialAvatar }}" class="h-full w-full object-cover">
+            {{-- <img src="https://placehold.co/300x450" class="h-full w-full object-contain"> --}}
+          </div>
+          <div class="col-span-12 md:col-span-9">
+            <div class="slider">
+              @foreach($testimonial->images as $image)
+                <div class="h-[400px]">
+                  <img src="/storage/{{ $image->photo_url }}" class="h-full w-full object-contain">
+                  {{-- <img src="https://placehold.co/1000x450" class="h-full w-full object-contain"> --}}
+                </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+
+    {{-- <div>
       @foreach($testimonials as $i => $testimonial)
         @php 
           $testimonialAvatar = "https://ui-avatars.com/api/?background=random&size=300&name=$testimonial->name";
@@ -52,7 +87,7 @@
           </div>
         </div>
       @endforeach
-    </div>
+    </div> --}}
     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
     {{-- <div id="pagination">
       {{ $testimonials->links() }}
@@ -104,10 +139,10 @@
 @section('script')
   <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
   <script>
-    $('.ohp-slider').slick({
-      slidesToShow: 4,
+    $('.slider').slick({
+      prevArrow: '<button type="button" class="slick-custom-arrow slick-prev"> < </button>',
+      nextArrow: '<button type="button" class="slick-custom-arrow slick-next"> > </button>'
     })
   </script>
 @endsection
