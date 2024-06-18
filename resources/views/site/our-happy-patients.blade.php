@@ -1,5 +1,17 @@
 @extends('layouts.site-layout')
 
+@section('styles')
+  <style>
+    .slick-arrow {
+      color: white;
+    }
+
+    .slick-custom-arrow {
+      font-size: 40px;
+    }
+  </style>
+@endsection
+
 @section('content')
 <section>
   <div class="max-w-screen-xl mx-auto px-5 lg:px-0 py-[70px]">
@@ -8,6 +20,24 @@
       <h1 class="text-3xl text-fontPrimary font-bold mb-[40px]">
         Our Happy Patients
       </h1>
+    </div>
+
+    <div>
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-3 h-[400px] bg-yellow-400">
+          <img src="https://placehold.co/400x400" class="h-full w-full object-cover">
+        </div>
+        <div class="col-span-9">
+          <div class="slider">
+            <div class="h-[400px] bg-[#083d67]">
+              <img src="https://placehold.co/400x400?text=hello-world-slider-1" class="h-full w-full object-contain">
+            </div>
+            <div class="h-[400px] bg-[#083d67]">
+              <img src="https://placehold.co/400x400?text=hi! I'm slider number 2" class="h-full w-full object-contain">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div>
@@ -82,4 +112,15 @@
 
   </div>
 </section>
+@endsection
+
+@section('script')
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script>
+    $('.slider').slick({
+      prevArrow: '<button type="button" class="slick-custom-arrow slick-prev"> < </button>',
+      nextArrow: '<button type="button" class="slick-custom-arrow slick-next"> > </button>'
+    })
+  </script>
 @endsection
