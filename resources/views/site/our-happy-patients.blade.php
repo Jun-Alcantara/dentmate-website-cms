@@ -42,7 +42,7 @@
             $testimonialAvatar = generate_image_url($testimonial->photo_url);
           }
         @endphp
-        <div class="grid grid-cols-12 gap-4">
+        <div class="grid grid-cols-12 gap-4 mb-5">
           <div class="col-span-12 md:col-span-3 h-[400px] bg-yellow-400">
             <img src="{{ $testimonialAvatar }}" class="h-full w-full object-cover">
             {{-- <img src="https://placehold.co/300x450" class="h-full w-full object-contain"> --}}
