@@ -82,6 +82,7 @@ class BranchesController extends Controller
         $branch = Branch::findOrFail($request->id);
         $branch->name = $request->name;
         $branch->address = $request->address;
+        $branch->email = $request->email;
         $branch->contact_number = $request->contact_number;
         $branch->facebook = $request->facebook;
 
