@@ -43,6 +43,14 @@
       })
     }
   }
+
+  const serviceImage = () => {
+    if (! props.service) {
+      return "https://placehold.co/400?text=Service Image"
+    }
+
+    return `/storage/${props.service.photo_url}`
+  }
 </script>
 
 <template>
@@ -52,8 +60,8 @@
         <button @click="closeModal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
       </form>
       <div class="mt-7 flex flex-row gap-[10px]">
-        <div v-if="service" class="mb-4 basis-3/12">
-          <img :src="`/storage/${service.photo_url}`" class="aspect-video object-cover">
+        <div class="mb-4 basis-3/12">
+          <img :src="serviceImage()" class="aspect-video object-cover">
           <div class="mt-4">
             <input @change="handleFileChange" type="file" class="file-input file-input-bordered w-full" accept="image/png, image/jpeg" />
           </div>
