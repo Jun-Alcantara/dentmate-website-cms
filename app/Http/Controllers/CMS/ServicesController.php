@@ -38,6 +38,7 @@ class ServicesController extends Controller
         $data = [
             'name' => $request->name,
             'description' => $request->description,
+            'content' => $request->content,
             'created_by' => Auth::user()->id
         ];
 
@@ -71,6 +72,7 @@ class ServicesController extends Controller
 
         $service->name = $request->name;
         $service->description = $request->description;
+        $service->content = $request->content;
         $service->save();
 
         return back()->with('notification.success', 'Service details updated');
