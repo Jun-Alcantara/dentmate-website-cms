@@ -36,7 +36,7 @@
           </Link>
         </li>
         <li>
-          <Link :href="route('cms.ohp.index')" class="text-white" :class="{'active' : route().current('cms.ohp.index')}">
+          <Link :href="route('cms.ohp.index')" class="text-white" :class="{'active' : route().current('cms.ohp.index') || route().current('cms.ohp.show')}">
             <i class="fa fa-users"></i>
             Our Happy Patients
           </Link>

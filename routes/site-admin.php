@@ -58,6 +58,7 @@ Route::prefix('site-admin')->group(function () {
             Route::post('create-testimonial', [OurHappyPatientsController::class, 'createTestimonial'])->name('cms.ohp.create');
             Route::post('update-testimonial', [OurHappyPatientsController::class, 'updateTestimonial'])->name('cms.ohp.update');
             Route::delete('delete-testimonial', [OurHappyPatientsController::class, 'deleteTestimonial'])->name('cms.ohp.delete');
+            Route::get('{testimonial}/images', [OurHappyPatientsController::class, 'bannerImages'])->name('cms.ohp.show');
         });
 
         Route::prefix('about-us')->group(function () {

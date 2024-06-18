@@ -7,6 +7,7 @@ use App\Models\PatientTestimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Banner;
 
 class OurHappyPatientsController extends Controller
 {
@@ -77,5 +78,11 @@ class OurHappyPatientsController extends Controller
         $testimonial->delete();
 
         return back()->with('notification.success', 'A testimonial has been deleted');
+    }
+
+    public function bannerImages(PatientTestimonial $testimonial)
+    {
+        $banners = Banner::wherePage('ohp:' . $testimonial->id)->get();
+        return inertia('CMS/OurHappyPatientImages', compact('testimonial', 'banners'));
     }
 }
