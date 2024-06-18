@@ -39,17 +39,19 @@
     </div>
 
     @foreach($services as $service)
-      <div class="flex flex-col md:flex-row gap-[20px] mb-[3rem]" data-aos="fade-up">
-        <div class="basis-[20%]">
-          <div class="aspect-square border-2 border-black">
-            <img src="{{ generate_image_url($service->photo_url) }}" alt="" class="aspect-square object-cover">
-          </div> 
+      <a href="/services/{{ $service->slug }}">
+        <div class="flex flex-col md:flex-row gap-[20px] mb-[3rem]" data-aos="fade-up">
+          <div class="basis-[20%]">
+            <div class="aspect-square border-2 border-black">
+              <img src="{{ generate_image_url($service->photo_url) }}" alt="" class="aspect-square object-cover">
+            </div> 
+          </div>
+          <div class="basis-[80%]">
+            <h3 class="text-3xl mb-[1rem]">{{ $service->name }}</h3>
+            <p>{{ $service->description }}</p>
+          </div>
         </div>
-        <div class="basis-[80%]">
-          <h3 class="text-3xl mb-[1rem]">{{ $service->name }}</h3>
-          <p>{{ $service->description }}</p>
-        </div>
-      </div>
+      </a>
     @endforeach
 
   </div>
