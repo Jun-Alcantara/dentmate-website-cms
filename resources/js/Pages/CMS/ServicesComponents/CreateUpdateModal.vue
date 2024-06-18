@@ -63,18 +63,22 @@
         <div class="mb-4 basis-3/12">
           <img :src="serviceImage()" class="aspect-video object-cover">
           <div class="mt-4">
+            <label class="font-semibold ml-2">Thumbnail:</label>
             <input @change="handleFileChange" type="file" class="file-input file-input-bordered w-full" accept="image/png, image/jpeg" />
           </div>
         </div>
         <div class="basis-9/12">
           <div class="">
+            <label class="font-semibold ml-2">Service Name:</label>
             <input v-model="form.name" type="text" placeholder="Service Name" class="input input-bordered w-full" :class="{'input-error': form.errors.name}">
             <span v-if="form.errors.name" class="text-error">{{ form.errors.name }}</span>
           </div>
           <div class="mt-4">
+            <label class="font-semibold ml-2">Description:</label>
             <textarea v-model="form.description" type="text" placeholder="Description" class="input input-bordered w-full" rows="30"></textarea>
           </div>
           <div>
+            <label class="font-semibold ml-2">Inner Page Content:</label>
             <Editor 
               v-model="form.content"
               api-key="no8pekez9ty5yc6jq7brbl5f0na1g8zz35vg3a7u9z6umqya"
