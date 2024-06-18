@@ -71,7 +71,7 @@
       </div>
       <div class="flex flex-wrap justify-center">
         @foreach($managers as $manager)
-          <div class="w-full basis-1/1 md:basis-1/2 lg:basis-[25%] p-[20px] flex flex-col" data-aos="fade-up">
+          <div class="w-full basis-1/2 md:basis-1/2 lg:basis-[25%] p-[5px] md:p-[20px] flex flex-col" data-aos="fade-up">
             <img
               class="aspect-square rounded-full border-[3px] border-fontPrimary object-cover"
               src="{{ generate_image_url($manager->photo_url) }}"
