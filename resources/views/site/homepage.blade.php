@@ -61,7 +61,7 @@
           <a href="/services/{{ $service->slug }}" class="basis-1/2 md:basis-4/12 lg:basis-3/12" data-aos="fade-up">
             <div class="p-1 md:p-2">
               <div
-                class="bg-[#083d67] w-full rounded grid place-items-center min-h-[300px] md:h-[200px]"
+                class="bg-[#083d67] w-full rounded grid place-items-center min-h-[150px] md:min-h-[300px] md:h-[200px]"
                 style="background: url('{{ generate_image_url($service->photo_url) }}'); background-size: cover;"
               >
                 <span class="px-5 text-white font-semibold text-center md:text-xl lg:text-2xl">
