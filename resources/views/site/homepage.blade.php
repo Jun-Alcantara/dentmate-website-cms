@@ -15,8 +15,8 @@
 
   <section class="bg-white">
     <div class="max-w-screen-xl mx-auto px-5 py-3 md:py-7 md:pt-[90px] pb-[20px] md:pb-[30px]">
-      <div class="styled-title ">
-        <h1 class="text-fontPrimary text-4xl text-center font-bold inline-block">Why Dentmate?</h1>
+      <div class="styled-title styled-title-center">
+        <h1 class="text-4xl text-fontPrimary text-center font-semibold">Why Dentmate?</h1>
       </div>
     </div>
     <div class="max-w-screen-xl mx-auto px-5 flex flex-col md:flex-row justify-center md:gap-[60px] md:pb-[90px] mb-[35px]" data-aos="zoom-in">
@@ -61,7 +61,7 @@
           <a href="/services/{{ $service->slug }}" class="basis-1/2 md:basis-4/12 lg:basis-3/12" data-aos="fade-up">
             <div class="p-1 md:p-2">
               <div
-                class="bg-[#083d67] w-full rounded grid place-items-center min-h-[300px] md:h-[200px]"
+                class="bg-[#083d67] w-full rounded grid place-items-center min-h-[150px] md:min-h-[300px] md:h-[200px]"
                 style="background: url('{{ generate_image_url($service->photo_url) }}'); background-size: cover;"
               >
                 <span class="px-5 text-white font-semibold text-center md:text-xl lg:text-2xl">
