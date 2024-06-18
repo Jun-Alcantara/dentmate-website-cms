@@ -8,7 +8,7 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { useForm } from '@inertiajs/vue3'
+  import { useForm, Link } from '@inertiajs/vue3'
   import { confirmationModalState } from '@/stores/globalState'
 
   import CreateEditModal from './OurHappyPatientsComponents/CreateEditModal.vue'
@@ -90,6 +90,9 @@
                 <button @click="handleEditClick(testimonial)" class="btn btn-primary btn-sm">
                   <i class="fa fa-edit"></i>
                 </button>
+                <Link :href="`/site-admin/our-happy-patients/${testimonial.id}/images`" class="btn btn-primary btn-sm">
+                  <i class="fa fa-eye"></i>
+                </Link>
               </div>
             </th>
           </tr>

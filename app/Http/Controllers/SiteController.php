@@ -52,7 +52,10 @@ class SiteController extends Controller
 
     public function ourHappyPatients()
     {
-        $testimonials = PatientTestimonial::paginate(10);
+        $testimonials = PatientTestimonial::get()->map(function ($testimonial) {
+            $testimonial->images = Banner::wherePage('ohp:' . $testimonial->id)->get();
+            return $testimonial;
+        });
 
         return view('site.our-happy-patients', compact('testimonials'));
     }

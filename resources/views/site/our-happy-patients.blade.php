@@ -4,6 +4,16 @@
   <style>
     .slick-arrow {
       color: white;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .slick-prev {
+      background-image: linear-gradient(to right, #000000ba, #00000000);
+    }
+
+    .slick-next {
+      background-image: linear-gradient(to right, #00000000, #000000ba);
     }
 
     .slick-custom-arrow {
@@ -22,23 +32,7 @@
       </h1>
     </div>
 
-    <div>
-      <div class="grid grid-cols-12 gap-4">
-        <div class="col-span-3 h-[400px] bg-yellow-400">
-          <img src="https://placehold.co/400x400" class="h-full w-full object-cover">
-        </div>
-        <div class="col-span-9">
-          <div class="slider">
-            <div class="h-[400px] bg-[#083d67]">
-              <img src="https://placehold.co/400x400?text=hello-world-slider-1" class="h-full w-full object-contain">
-            </div>
-            <div class="h-[400px] bg-[#083d67]">
-              <img src="https://placehold.co/400x400?text=hi! I'm slider number 2" class="h-full w-full object-contain">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     <div>
       @foreach($testimonials as $i => $testimonial)
@@ -48,29 +42,57 @@
             $testimonialAvatar = generate_image_url($testimonial->photo_url);
           }
         @endphp
-        <div class="flex md:mb-[70px] <?php if ($i % 2 === 0) { echo 'flex-row-reversexx'; } ?>" data-aos="slide-left">
-          <div>
-            <figure class="aspect-square w-[400px]">
+        <div class="grid grid-cols-12 gap-4">
+          <div class="col-span-12 md:col-span-3 h-[400px] bg-yellow-400">
+            <img src="{{ $testimonialAvatar }}" class="h-full w-full object-cover">
+            {{-- <img src="https://placehold.co/300x450" class="h-full w-full object-contain"> --}}
+          </div>
+          <div class="col-span-12 md:col-span-9">
+            <div class="slider">
+              @foreach($testimonial->images as $image)
+                <div class="h-[400px]">
+                  <img src="/storage/{{ $image->photo_url }}" class="h-full w-full object-contain">
+                  {{-- <img src="https://placehold.co/1000x450" class="h-full w-full object-contain"> --}}
+                </div>
+              @endforeach
+            </div>
+          </div>
+        </div>
+      @endforeach
+    </div>
+
+    {{-- <div>
+      @foreach($testimonials as $i => $testimonial)
+        @php 
+          $testimonialAvatar = "https://ui-avatars.com/api/?background=random&size=300&name=$testimonial->name";
+          if ($testimonial->photo_url) {
+            $testimonialAvatar = generate_image_url($testimonial->photo_url);
+          }
+        @endphp
+        <div class="flex flex-col gap-[10px]">
+          <div class="w-full md:w-[25%]">
+            <figure class="aspect-square">
               <img class="w-full h-full object-cover rounded-md" 
                 src="{{ $testimonialAvatar }}" 
                 alt=""
               >
             </figure>
           </div>
-          <div class="<?php if ($i % 2 === 0) { echo 'right-quotexx'; } else { echo 'left-quotexx'; } ?>"></div>
-          <div class="testimonial">
-            <blockquote class="!mt-0 h-full flex items-center">
-              {{ $testimonial->testimonial }}
-            </blockquote>
+          <div class="ohp-slider w-full w-full md:w-[75%] bg-gray-200 rounded-md p-2">
+            @foreach($testimonial->images as $image)
+              <div class="!h-[290px]">
+                <img src="/storage/{{ $image->photo_url }}" alt="" class="w-full h-full object-contain">
+              </div>
+            @endforeach
           </div>
         </div>
       @endforeach
-    </div>
+    </div> --}}
     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
-    <div id="pagination">
+    {{-- <div id="pagination">
       {{ $testimonials->links() }}
-    </div>
-    <nav class="hidden" aria-label="Page navigation example">
+    </div> --}}
+    {{-- <nav class="hidden" aria-label="Page navigation example">
       <ul class="list-style-none flex justify-center">
         <li>
           <a
@@ -108,7 +130,7 @@
           >
         </li>
       </ul>
-    </nav>
+    </nav> --}}
 
   </div>
 </section>
