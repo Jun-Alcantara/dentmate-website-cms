@@ -21,49 +21,45 @@
         <div class="flex flex-col md:flex-row md:gap-[25px]">
           <div class="basis-[50%]">
             <div class="mb-3">
-              <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">First Name: <span class="text-red-500 text-xl">*</span></label>
+              <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">First Name: <span class="text-red-500">*</span></label>
               <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name: <span class="text-red-500 text-xl">*</span></label>
+              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name: <span class="text-red-500">*</span></label>
               <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="fb_name" class="block mb-2 text-sm font-medium text-gray-900">Facebook Name or FB Profile Link:</label>
-              <input type="text" id="fb_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
-            </div>
-            <div class="mb-3">
-              <label for="clinics" class="block mb-2 text-sm font-medium text-gray-900">Select Branch: <span class="text-red-500 text-xl">*</span></label>
+              <label for="clinics" class="block mb-2 text-sm font-medium text-gray-900">Select Branch: <span class="text-red-500 ">*</span></label>
               <select id="clinics" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option value="" selected>Choose Branch</option>
               </select>
             </div>
             <div class="mb-3">
               <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Note to Clinic:</label>
-              <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
+              <textarea id="message" rows="5" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"></textarea>
             </div>
           </div>
           <div class="basis-[50%]">
             <div class="mb-3">
-              <label for="mobile_number" class="block mb-2 text-sm font-medium text-gray-900">Mobile Number: <span class="text-red-500 text-xl">*</span></label>
+              <label for="mobile_number" class="block mb-2 text-sm font-medium text-gray-900">Mobile Number: <span class="text-red-500">*</span></label>
               <input type="text" id="mobile_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email:</label>
-              <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
+              <label for="fb_name" class="block mb-2 text-sm font-medium text-gray-900">Facebook Profile Link or FB Name:</label>
+              <input type="text" id="fb_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="service" class="block mb-2 text-sm font-medium text-gray-900">Select Service: <span class="text-red-500 text-xl">*</span></label>
+              <label for="service" class="block mb-2 text-sm font-medium text-gray-900">Select Service: <span class="text-red-500">*</span></label>
               <select id="service" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Choose Service</option>
               </select>
             </div>
             <div class="mb-3">
-              <label for="booking-date" class="block mb-2 text-sm font-medium text-gray-900">Select your date of visit: <span class="text-red-500 text-xl">*</span></label>
+              <label for="booking-date" class="block mb-2 text-sm font-medium text-gray-900">Select your date of visit: <span class="text-red-500">*</span></label>
               <input id="booking-date" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Click here to select date">
             </div>
             <div class="mb-3">
-              <label for="slots" class="block mb-2 text-sm font-medium text-gray-900">Select your time slot: <span class="text-red-500 text-xl">*</span></label>
+              <label for="slots" class="block mb-2 text-sm font-medium text-gray-900">Select your time slot: <span class="text-red-500 ">*</span></label>
               <select id="slots" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option selected>Select time slot</option>
               </select>
@@ -197,7 +193,6 @@
       fb_name: $('#fb_name').val(),
       remakrs: $('#message').val(),
       mobile_no: $('#mobile_number').val(),
-      email: $('#email').val(),
       start_time: start,
       end_time: end,
       service_id: $('#service').val(),
@@ -231,7 +226,6 @@
         $('#fb_name').val('')
         $('#message').val('')
         $('#mobile_number').val('')
-        $('#email').val('')
         $('#slots').val('')
         $('#booking-date').val('')
 
