@@ -25,20 +25,12 @@
               <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="middle_name" class="block mb-2 text-sm font-medium text-gray-900">Middle Name:</label>
-              <input type="text" id="middle_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
-            </div>
-            <div class="mb-3">
               <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last Name: <span class="text-red-500 text-xl">*</span></label>
               <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
-              <label for="gender" class="block mb-2 text-sm font-medium text-gray-900">Gender: <span class="text-red-500 text-xl">*</span></label>
-              <select id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected>Select your gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
+              <label for="fb_name" class="block mb-2 text-sm font-medium text-gray-900">Facebook Name or FB Profile Link:</label>
+              <input type="text" id="fb_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"required>
             </div>
             <div class="mb-3">
               <label for="clinics" class="block mb-2 text-sm font-medium text-gray-900">Select Branch: <span class="text-red-500 text-xl">*</span></label>
@@ -200,10 +192,9 @@
 
     payload = {
       firstname: $('#first_name').val(),
-      middlename: $('#middle_name').val(),
       lastname: $('#last_name').val(),
-      gender: $('#gender').val(),
       clinic_id: $('#clinics').val(),
+      fb_name: $('#fb_name').val(),
       remakrs: $('#message').val(),
       mobile_no: $('#mobile_number').val(),
       email: $('#email').val(),
@@ -235,10 +226,9 @@
         });
 
         $('#first_name').val('')
-        $('#middle_name').val('')
         $('#last_name').val('')
-        $('#gender').val('')
         $('#clinics').val('')
+        $('#fb_name').val('')
         $('#message').val('')
         $('#mobile_number').val('')
         $('#email').val('')
