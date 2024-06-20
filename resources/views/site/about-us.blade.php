@@ -19,7 +19,7 @@
       <div class="flex flex-col md:flex-row py-[50px] md:py-[90px]" data-aos="fade-left">
         <div class="basis-[25%] md:pt-[85px]">
           <div class="aspect-square border-2 boreder-red">
-            <img src="{{ generate_image_url($content->our_story_photo_url) }}" class="w-full h-full object-cover">
+            <img src="{{ generate_image_url($content->our_story_photo_url ?? null) }}" class="w-full h-full object-cover">
           </div>
         </div>
         <div class="basis-[75%] md:pl-[1.5rem]">
@@ -27,7 +27,7 @@
             <h1 class="text-fontPrimary font-semibold text-3xl mb-5">Our Story</h1>
           </div>
           <p>
-            {!! nl2br($content->our_story_writeup) !!}
+            {!! nl2br($content->our_story_writeup ?? null) !!}
           </p>
         </div>
       </div>
@@ -37,11 +37,11 @@
           <div class="styled-title">
             <h1 class="text-fontPrimary font-semibold text-3xl mb-5">Founders Story</h1>
           </div>
-          <p>{!! nl2br($content->founders_writeup) !!}</p>
+          <p>{!! nl2br($content->founders_writeup ?? null) !!}</p>
         </div>
         <div class="basis-[25%] md:pt-[85px]">
           <div class="aspect-square border-2 boreder-red">
-            <img src="{{ generate_image_url($content->founders_photo_url) }}" class="w-full h-full object-cover">
+            <img src="{{ generate_image_url($content->founders_photo_url ?? null) }}" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
@@ -76,6 +76,8 @@
               class="aspect-square rounded-full border-[3px] border-fontPrimary object-cover"
               src="{{ generate_image_url($manager->photo_url) }}"
             >
+            <p class="text-[#083d67] text-center mt-3 font-bold text-xl">{{ $manager->name }}</p>
+            <p class="text-[#083d67] text-center font-semibold">{{ $manager->position }}</p>
           </div>
         @endforeach
       </div>
