@@ -7,6 +7,7 @@ use App\Http\Controllers\CMS\HomepageController;
 use App\Http\Controllers\CMS\LoginController;
 use App\Http\Controllers\CMS\OurDoctorsController;
 use App\Http\Controllers\CMS\OurHappyPatientsController;
+use App\Http\Controllers\CMS\PostController;
 use App\Http\Controllers\CMS\ServicesController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +73,10 @@ Route::prefix('site-admin')->group(function () {
         Route::prefix('banners')->group(function () {
             Route::post('add-banner', [BannersController::class, 'addBanner'])->name('cms.banners.addBanner');
             Route::delete('delete-banner', [BannersController::class, 'deleteBanner'])->name('cms.banners.deleteBanner');
+        });
+
+        Route::prefix('posts')->group(function () {
+            Route::get('create', [PostController::class, 'create'])->name('posts.create');
         });
     });
 });
