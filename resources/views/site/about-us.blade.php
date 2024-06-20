@@ -76,7 +76,7 @@
               class="aspect-square rounded-full border-[3px] border-fontPrimary object-cover"
               src="{{ generate_image_url($manager->photo_url) }}"
             >
-            <p class="text-[#083d67] text-center mt-3 font-bold text-xl">{{ $manager->name }}</p>
+            <p class="text-[#083d67] text-center mt-3 font-bold md:text-xl">{{ $manager->name }}</p>
             <p class="text-[#083d67] text-center font-semibold">{{ $manager->position }}</p>
           </div>
         @endforeach
