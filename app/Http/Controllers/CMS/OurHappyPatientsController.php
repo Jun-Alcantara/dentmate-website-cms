@@ -33,8 +33,19 @@ class OurHappyPatientsController extends Controller
             Storage::put($photoPath, file_get_contents($request->file('image')));
         }
 
+        $beforeAfterPhotoPath = null;
+        if ($request->hasFile('beforeAfterImage') && ! is_null($request->beforeAfterImage)) {
+            $beforeAfterImage = $request->file('beforeAfterImage');
+            $extension = $beforeAfterImage->extension();
+            $uniqueFilename = now()->timestamp;
+            $beforeAfterPhotoPath = "images/$uniqueFilename.$extension";
+
+            Storage::put($beforeAfterPhotoPath, file_get_contents($request->file('image')));
+        }
+
         PatientTestimonial::create([
             'photo_url' => $photoPath,
+            'before_after_photo_url' => $beforeAfterPhotoPath,
             'testimonial' => $request->testimonial,
             'name' => $request->name,
             'created_by' => Auth::user()->id
@@ -63,6 +74,20 @@ class OurHappyPatientsController extends Controller
 
         if ($photoPath) {
             $testimonial->photo_url = $photoPath;
+        }
+
+        $beforeAfterPhotoPath = null;
+        if ($request->hasFile('beforeAfterImage') && ! is_null($request->beforeAfterImage)) {
+            $beforeAfterImage = $request->file('beforeAfterImage');
+            $extension = $beforeAfterImage->extension();
+            $uniqueFilename = now()->timestamp;
+            $beforeAfterPhotoPath = "images/$uniqueFilename.$extension";
+
+            Storage::put($beforeAfterPhotoPath, file_get_contents($request->file('beforeAfterImage')));
+        }
+
+        if ($beforeAfterPhotoPath) {
+            $testimonial->before_after_photo_url = $beforeAfterPhotoPath;
         }
 
         $testimonial->testimonial = $request->testimonial;

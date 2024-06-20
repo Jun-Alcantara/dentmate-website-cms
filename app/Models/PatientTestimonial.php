@@ -9,5 +9,5 @@ class PatientTestimonial extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['photo_url', 'testimonial', 'name', 'created_by'];
+    protected $fillable = ['photo_url', 'before_after_photo_url', 'testimonial', 'name', 'created_by'];
 }
