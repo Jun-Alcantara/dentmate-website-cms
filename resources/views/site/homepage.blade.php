@@ -14,22 +14,23 @@
   </section>
 
   <section class="bg-white">
-    <div class="max-w-screen-xl mx-auto px-5 py-3 md:py-7 md:pt-[90px] pb-[20px] md:pb-[30px]">
+    <div class="max-w-screen-xl mx-auto px-5 py-3 md:py-7 md:pt-[60px] pb-[20px] md:pb-[30px]">
       <div class="styled-title styled-title-center">
-        <h1 class="text-4xl text-fontPrimary text-center font-semibold">Why Dentmate?</h1>
+        <h1 class="text-3xl md:text-4xl text-fontPrimary text-center font-semibold">Why Dentmate?</h1>
       </div>
     </div>
-    <div class="max-w-screen-xl mx-auto px-5 flex flex-col md:flex-row justify-center md:gap-[60px] md:pb-[90px] mb-[35px]" data-aos="zoom-in">
+    <div class="max-w-screen-md mx-auto px-5 flex flex-row md:flex-row justify-center gap-[5px] md:gap-[60px] md:pb-[90px] mb-[35px]" data-aos="zoom-in">
       @for($i = 1; $i <= 3; $i++)
         @if(isset($whyDentmate) && isset($whyDentmate[$i]) && $wd = $whyDentmate[$i])
-        <div class="basis-4/12 mb-3 flex gap-[10px] md:block">
-          <img src="{{ generate_image_url($wd['photo_url']) }}" alt="" class="block shadow-md rounded-md w-[35%] md:w-full">
-          <div>
+        <div class="mb-3 flex flex-col justify-center md:block">
+          <img src="{{ generate_image_url($wd['photo_url']) }}" alt="" class="block shadow-md rounded-md md:w-full">
+          <p class="text-fontSecondary text-center md:text-2xl font-semibold">{{ $wd['title'] }}</p>
+          {{-- <div>
             <h3 class="text-2xl lg:text-3xl lg:pt-1 text-fontSecondary font-semibold pb-1 md:text-left md:mt-3">{{ $wd['title'] }}</h3>
             <p class="md:text-left text-fontPrimary">
               {{ $wd['description'] }}
             </p>
-          </div>
+          </div> --}}
         </div>
         @endif
       @endfor
