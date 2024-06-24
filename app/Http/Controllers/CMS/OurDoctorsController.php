@@ -95,9 +95,13 @@ class OurDoctorsController extends Controller
             Storage::put($path, file_get_contents($request->file('image')));
         }
 
+        $slug = str_replace(" ", "-", $request->name) . "-" . uniqid();
+
         $data = [
             'name' => $request->name,
-            'branch_id' => $request->branch
+            'slug' => $slug,
+            'branch_id' => $request->branch,
+            'content' => $request->content
         ];
 
         if (isset($path)) {
@@ -144,9 +148,15 @@ class OurDoctorsController extends Controller
         
         $doctor->name = $request->name;
         $doctor->branch_id = $request->branch;
+        $doctor->content = $request->content;
         $doctor->save();
 
         return back()
             ->with('notification.success', 'Doctor record has been updated');
+    }
+
+    public function edit(Doctor $doctor)
+    {
+        return inertia('CMS/OurDoctorsEdit', compact('doctor'));
     }
 }

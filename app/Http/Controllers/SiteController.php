@@ -78,4 +78,13 @@ class SiteController extends Controller
     {
         return view('site.branch-inner', compact('branch'));
     }
+
+    public function ourDoctorInner(Doctor $doctor)
+    {
+        $branch = $doctor->Branch;
+        $doctors = Doctor::where('id', '!=', $doctor->id)
+            ->get();
+
+        return view('site.our-doctors-inner', compact('doctor', 'branch', 'doctors'));
+    }
 }

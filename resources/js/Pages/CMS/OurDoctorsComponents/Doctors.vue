@@ -1,5 +1,5 @@
 <script setup>
-  import { useForm } from '@inertiajs/vue3'
+  import { useForm, Link } from '@inertiajs/vue3'
   import { newDoctorModalState } from '@/stores/ourDoctorsState'
   import { confirmationModalState } from '@/stores/globalState'
 
@@ -70,6 +70,9 @@
               <button @click="handleDeletButtonClick(doctor)" class="btn btn-error btn-sm text-white">
                 <i class="fa fa-trash"></i>
               </button>
+              <!-- <Link :href="route('cms.ourdoctors.edit', doctor.id)" class="btn btn-primary btn-sm">
+                <i class="fa fa-edit"></i>
+              </Link> -->
               <button @click="handleEditClick(doctor)" class="btn btn-primary btn-sm">
                 <i class="fa fa-edit"></i>
               </button>

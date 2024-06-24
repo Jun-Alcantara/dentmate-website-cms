@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [SiteController::class, 'homepage'])->name('site.homepage');
 Route::get('doctors', [SiteController::class, 'ourDoctors'])->name('site.ourDoctors');
+Route::get('doctors/{doctor}', [SiteController::class, 'ourDoctorInner'])->name('site.ourDoctors.inner');
 Route::get('services', [SiteController::class, 'services'])->name('site.services');
 Route::get('services/{service}', [SiteController::class, 'showService']);
 Route::get('our-happy-patients', [SiteController::class, 'ourHappyPatients'])->name('site.ohp');

@@ -9,7 +9,12 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['photo_url', 'name', 'branch_id'];
+    protected $fillable = ['slug', 'photo_url', 'name', 'branch_id', 'content'];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function branch()
     {
