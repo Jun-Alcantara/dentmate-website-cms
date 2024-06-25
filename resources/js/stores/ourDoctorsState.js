@@ -9,7 +9,8 @@ export const newDoctorModalState = defineStore('newDoctorModalState', () => {
     id: null,
     image: null,
     name: null,
-    branch: null
+    branch: null,
+    content: null
   })
 
   const open = () => state.value = true
@@ -26,6 +27,7 @@ export const newDoctorModalState = defineStore('newDoctorModalState', () => {
     form.id = d.id
     form.name = d.name
     form.branch = d.branch?.id
+    form.content = d.content
   }
 
   return {
