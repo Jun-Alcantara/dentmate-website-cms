@@ -338,7 +338,9 @@
       // Disable the option is the disabledSlotsFrom and disabledSlotsTo are not null
       if ((disabledSlotsFrom && disabledSlotsTo &&
           currentTime.isAfter(dayjs(disabledSlotsFrom, 'HH:mm')) &&
-          currentTime.isBefore(dayjs(disabledSlotsTo, 'HH:mm').add(1, 'hour'))) || currentTime.isAfter(dayjs()) ) {
+          currentTime.isBefore(dayjs(disabledSlotsTo, 'HH:mm').add(1, 'hour'))) 
+          || (currentTime.isAfter(dayjs()) && dayjs().isToday(selectedDate)) 
+      ) {
           // options += `<option disabled>${optionText} (Blocked)</option>`;
       } else {
           options += `<option value="${optionValue}">${optionText}</option>`
