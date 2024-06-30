@@ -339,17 +339,16 @@
       if ((disabledSlotsFrom && disabledSlotsTo &&
           currentTime.isAfter(dayjs(disabledSlotsFrom, 'HH:mm')) &&
           currentTime.isBefore(dayjs(disabledSlotsTo, 'HH:mm').add(1, 'hour'))) 
-          || (currentTime.isAfter(dayjs()) && dayjs().isToday(selectedDate)) 
+          // || (currentTime.isAfter(dayjs()) && dayjs().isSame(selectedDate, 'day')) 
       ) {
           // options += `<option disabled>${optionText} (Blocked)</option>`;
       } else {
-          options += `<option value="${optionValue}">${optionText}</option>`
+        options += `<option value="${optionValue}">${optionText}</option>`
       }
 
       currentTime = nextTime;
     }
 
-    console.log(options)
     slotsDropdown.html(options)
   }
 
