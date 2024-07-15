@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dentmate Webiste</title>
+    <title>Dentmate Website</title>
     
     {{-- Third Party Dependencies --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,6 +17,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <script src="/vendor/jquery.js"></script>
+    <link href="/vendor/select2/select2.css" rel="stylesheet" />
+    <script src="/vendor/select2/select2.js"></script>
+    <link rel="stylesheet" href="/vendor/flatpickr/flatpickr.css">
+    <link rel="stylesheet" href="/vendor/flatpickr/theme-material-blue.css">
+    <script src="/vendor/flatpickr/flatpickr.js"></script>
+    <script src="/vendor/axios.js"></script>
+    <script src="/vendor/day.js"></script>
 
     @vite('resources/css/site.css')
     @yield('styles')

@@ -1,3 +1,10 @@
+<style>
+  .select2-selection {
+    border: 1px solid #d1d5db !important;
+    height: 40px;
+  }
+</style>
+
 <section id="booking-form-section" class="bg-white">
   <div class="max-w-screen-xl mx-auto px-5 py-[50px]">
     <h3 class="text-4xl font-semibold text-[#083d67]">Book Now</h3>
@@ -50,8 +57,8 @@
             </div>
             <div class="mb-3">
               <label for="service" class="block mb-2 text-sm font-medium text-gray-900">Select Service: <span class="text-red-500">*</span></label>
-              <select id="service" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                <option selected>Choose Service</option>
+              <select id="service" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" multiple>
+                {{-- <option selected>Choose Service</option> --}}
               </select>
             </div>
             <div class="mb-3">
@@ -78,14 +85,8 @@
   </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="https://npmcdn.com/flatpickr@4.6.13/dist/themes/material_blue.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.11/dayjs.min.js" integrity="sha512-FwNWaxyfy2XlEINoSnZh1JQ5TRRtGow0D6XcmAWmYCRgvqOUTnzCxPc9uF35u5ZEpirk1uhlPVA19tflhvnW1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  const baseUrl = `http://admin.dentmate.ph/api`
+  const baseUrl = `https://admin.dentmate.ph/api`
   const clinicDropdown = $('#clinics')
   const slotsDropdown = $('#slots')
   const servicesDropdown = $('#service')
@@ -136,6 +137,8 @@
       })
   })
 
+  $('#service').select2()
+
   clinicDropdown.change((e) => {
     generateSlotOptions()
     let clinic_id = $(e.target).val()
@@ -184,9 +187,20 @@
     let [start, end] = timeslot.split('-')
 
     currentDate = dayjs().format('YYYY-MM-DD') + ' ' + start + ':00'
-    end = dayjs(currentDate).add(selectedServiceDuration.hours, 'hour')
-      .add(selectedServiceDuration.minutes, 'minute')
-      .format('HH:mm')
+    end = dayjs(currentDate)
+
+    let selectedServices = $('#service').find(':selected')
+    selectedServices.each((index, service) => {
+      
+      let durationHours = $(service).data('duration-hours')
+      let durationMinutes = $(service).data('duration-minutes')
+
+      end = end.add(durationHours, 'hour')
+              .add(durationMinutes, 'minute')
+
+    })
+    
+    end = end.format('HH:mm')
 
     payload = {
       firstname: $('#first_name').val(),
