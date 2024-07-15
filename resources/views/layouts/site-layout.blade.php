@@ -18,6 +18,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
 
+    <script src="/vendor/jquery.js"></script>
+    <link href="/vendor/select2/select2.css" rel="stylesheet" />
+    <script src="/vendor/select2/select2.js"></script>
+    <link rel="stylesheet" href="/vendor/flatpickr/flatpickr.css">
+    <link rel="stylesheet" href="/vendor/flatpickr/theme-material-blue.css">
+    <script src="/vendor/flatpickr/flatpickr.js"></script>
+    <script src="/vendor/axios.js"></script>
+    <script src="/vendor/day.js"></script>
+
     @vite('resources/css/site.css')
     @yield('styles')
   </head>
