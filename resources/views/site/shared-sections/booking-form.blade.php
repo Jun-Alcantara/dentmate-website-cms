@@ -122,7 +122,7 @@
         services.forEach(service => {
           let duration = parseDuration(service.duration)
           
-          let description = service.show_duration ? `[${service.duration}]` : service.description
+          let description = service.show_duration ? `[${service.duration}]` : `[${service.description}]`
 
           servicesDropdown.append(
             `<option 
