@@ -120,6 +120,8 @@
 
         services.forEach(service => {
           let duration = parseDuration(service.duration)
+          
+          let description = service.show_duration ? `[${service.duration}]` : serivce.description
 
           servicesDropdown.append(
             `<option 
@@ -127,7 +129,7 @@
               data-duration-hours="${duration.hours}"
               data-duration-minutes="${duration.minutes}"
             >
-              ${service.name} [${service.duration}]
+              ${service.name} ${description}
             </option>`
           )
         })
