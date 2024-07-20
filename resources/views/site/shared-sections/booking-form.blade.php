@@ -207,7 +207,7 @@
       lastname: $('#last_name').val(),
       clinic_id: $('#clinics').val(),
       fb_name: $('#fb_name').val(),
-      remakrs: $('#message').val(),
+      remarks: $('#message').val(),
       mobile_no: $('#mobile_number').val(),
       start_time: start,
       end_time: end,
