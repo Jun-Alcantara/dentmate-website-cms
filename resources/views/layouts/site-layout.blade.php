@@ -14,6 +14,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+      .concert-one{
+        font-family:  "Concert One", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.0/dist/sweetalert2.min.css" rel="stylesheet">
@@ -23,6 +32,7 @@
     <script src="/vendor/select2/select2.js"></script>
     <link rel="stylesheet" href="/vendor/flatpickr/flatpickr.css">
     <link rel="stylesheet" href="/vendor/flatpickr/theme-material-blue.css">
+    <link rel="stylesheet" href="/vendor/animate.css">
     <script src="/vendor/flatpickr/flatpickr.js"></script>
     <script src="/vendor/axios.js"></script>
     <script src="/vendor/day.js"></script>
@@ -75,34 +85,68 @@
     </div>
 
     <section class="bg-[#083d67]">
-      <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center"> 
-        <ul class="flex flex-col md:flex-row text-center gap-[25px] my-5 md:px-5 md:my-10">
-          <li>
-            <a href="/about-us" class="text-white">About Us</a>
-          </li>
-          <li>
-            <a href="/#our-branches" class="text-white">Our Branches</a>
-          </li>
-          <li>
-            <a href="/services" class="text-white">Our Services</a>
-          </li>
-          <li>
-            <a href="/#booking-form-section" class="text-white">Book Now</a>
-          </li>
-        </ul>
-        <div class="border-b-[1px] border-white w-full md:hidden"></div>
-        <ul class="my-5 px-5">
-          @foreach($branches as $branch)
-            <li class="text-white">
-              <svg class="inline h-[20px] w-[20px] mb-[5px]" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,255.99098,255.99098">
-                <g fill="#083d67" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,255.99098v-255.99098h255.99098v255.99098z" id="bgRectangle"></path></g><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.016 4.432,10.984 10.206,11.852v-8.672h-2.969v-3.154h2.969v-2.099c0,-3.475 1.693,-5 4.581,-5c1.383,0 2.115,0.103 2.461,0.149v2.753h-1.97c-1.226,0 -1.654,1.163 -1.654,2.473v1.724h3.593l-0.487,3.154h-3.106v8.697c5.857,-0.794 10.376,-5.802 10.376,-11.877c0,-6.627 -5.373,-12 -12,-12z"></path></g></g>
-              </svg>
-              <a href="{{ $branch->facebook }}" target="_blank">
-                {{ $branch->name }}
-              </a>
+      <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row gap-5 px-3 py-5"> 
+
+        <div class="order-2 md:order-1 mt-3 md:mt-0 border-t-2 md:border-0 border-t-white basis-1/2 flex flex-col justify-center">
+          <ul class="grid grid-cols-2 gap-3 text-center mt-5 md:mt-0 lg:text-left">
+            <li>
+              <a href="/about-us" class="text-white">About Us</a>
             </li>
-          @endforeach
-        </ul>
+            <li>
+              <a href="/#our-branches" class="text-white">Our Branches</a>
+            </li>
+            <li>
+              <a href="/services" class="text-white">Our Services</a>
+            </li>
+            <li>
+              <a href="/our-happy-patients" class="text-white">Our Happy Patients</a>
+            </li>
+            <li>
+              <a href="/#booking-form-section" class="text-white">Book Now</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="order-1 md:order-2 basis-1/2">
+          <div>
+            <h3 class="concert-one uppercase text-white text-2xl animate__animated animate__pulse animate__infinite	infinite animate__slow	1s">Explore More Smiles Here!</h3>
+          </div>
+          <div class="flex flex-col lg:flex-row lg:gap-5">
+            <ul class="mt-3 text-white">
+              <li>Visit our social media accounts:</li>
+              @foreach($branches as $branch)
+                <li class="text-white">
+                  <svg class="inline h-[20px] w-[20px] mb-[5px]" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,255.99098,255.99098">
+                    <g fill="#083d67" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,255.99098v-255.99098h255.99098v255.99098z" id="bgRectangle"></path></g><g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(8.53333,8.53333)"><path d="M15,3c-6.627,0 -12,5.373 -12,12c0,6.016 4.432,10.984 10.206,11.852v-8.672h-2.969v-3.154h2.969v-2.099c0,-3.475 1.693,-5 4.581,-5c1.383,0 2.115,0.103 2.461,0.149v2.753h-1.97c-1.226,0 -1.654,1.163 -1.654,2.473v1.724h3.593l-0.487,3.154h-3.106v8.697c5.857,-0.794 10.376,-5.802 10.376,-11.877c0,-6.627 -5.373,-12 -12,-12z"></path></g></g>
+                  </svg>
+                  <a href="{{ $branch->facebook }}" target="_blank">
+                    {{ $branch->name }}
+                  </a>
+                </li>
+              @endforeach
+            </ul>
+            <ul class="text-white mt-3">
+              <li>For urgent concers, please call:</li>
+              <li>
+                <svg class="inline h-[18px] w-[18px] mb-[5px]" fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.609,0,0,114.609,0,256s114.609,256,256,256s256-114.609,256-256S397.391,0,256,0z M256,472 c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472z"></path> <path d="M327.125,383.969c5.703,0.016,56.875-37.828,56.875-42.656s-57.266-40.906-62.219-40.906s-21.578,19.938-26.062,22.156 c-4.5,2.219-32.5,1.422-63.703-29.781c-31.219-31.188-41.875-67.109-41.875-72.75s26.031-23.062,26.75-27.156 S182.578,128,176.891,128S128,180.5,128,184.875s3.953,60.656,75.219,131.906S321.422,383.938,327.125,383.969z"></path> </g></svg>
+                09920446404
+              </li>
+              <li>
+                <svg class="inline h-[18px] w-[18px] mb-[5px]" fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.609,0,0,114.609,0,256s114.609,256,256,256s256-114.609,256-256S397.391,0,256,0z M256,472 c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472z"></path> <path d="M327.125,383.969c5.703,0.016,56.875-37.828,56.875-42.656s-57.266-40.906-62.219-40.906s-21.578,19.938-26.062,22.156 c-4.5,2.219-32.5,1.422-63.703-29.781c-31.219-31.188-41.875-67.109-41.875-72.75s26.031-23.062,26.75-27.156 S182.578,128,176.891,128S128,180.5,128,184.875s3.953,60.656,75.219,131.906S321.422,383.938,327.125,383.969z"></path> </g></svg>
+                09920446406
+              </li>
+              <li>
+                <svg class="inline h-[18px] w-[18px] mb-[5px]" fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.609,0,0,114.609,0,256s114.609,256,256,256s256-114.609,256-256S397.391,0,256,0z M256,472 c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472z"></path> <path d="M327.125,383.969c5.703,0.016,56.875-37.828,56.875-42.656s-57.266-40.906-62.219-40.906s-21.578,19.938-26.062,22.156 c-4.5,2.219-32.5,1.422-63.703-29.781c-31.219-31.188-41.875-67.109-41.875-72.75s26.031-23.062,26.75-27.156 S182.578,128,176.891,128S128,180.5,128,184.875s3.953,60.656,75.219,131.906S321.422,383.938,327.125,383.969z"></path> </g></svg>  
+                09942046171
+              </li>
+              <li>
+                <svg class="inline h-[18px] w-[18px] mb-[5px]" fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.609,0,0,114.609,0,256s114.609,256,256,256s256-114.609,256-256S397.391,0,256,0z M256,472 c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472z"></path> <path d="M327.125,383.969c5.703,0.016,56.875-37.828,56.875-42.656s-57.266-40.906-62.219-40.906s-21.578,19.938-26.062,22.156 c-4.5,2.219-32.5,1.422-63.703-29.781c-31.219-31.188-41.875-67.109-41.875-72.75s26.031-23.062,26.75-27.156 S182.578,128,176.891,128S128,180.5,128,184.875s3.953,60.656,75.219,131.906S321.422,383.938,327.125,383.969z"></path> </g></svg>  
+                09920446405
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </section>
 
