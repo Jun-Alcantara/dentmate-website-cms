@@ -14,7 +14,7 @@
           Experience Dental Care at its Finest! Visit and book at Dentmate Dental Clinic of your choice! 
         </p>
 
-        <div id="error-container" class="bg-red-100 px-5 pt-3 pb-1 rounded-md mb-5 border-2 border-red-200">
+        <div id="error-container" class="hidden bg-red-100 px-5 pt-3 pb-1 rounded-md mb-5 border-2 border-red-200">
           <h3 class="text-xl text-red-500">Oops!</h3>
           <ul id="error-list" class="list-disc list-inside text-red-500 mb-3">
           </ul>
