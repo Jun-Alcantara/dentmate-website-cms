@@ -14,8 +14,8 @@
           Experience Dental Care at its Finest! Visit and book at Dentmate Dental Clinic of your choice! 
         </p>
 
-        <div id="error-container" class="hidden">
-          <h3 class="text-xl text-red-500">There are errors</h3>
+        <div id="error-container" class="bg-red-100 px-5 pt-3 pb-1 rounded-md mb-5 border-2 border-red-200">
+          <h3 class="text-xl text-red-500">Oops!</h3>
           <ul id="error-list" class="list-disc list-inside text-red-500 mb-3">
           </ul>
         </div>
@@ -87,6 +87,7 @@
 
 <script>
   const baseUrl = `https://admin.dentmate.ph/api`
+  // const baseUrl = `http://localhost:8080/api`
   const clinicDropdown = $('#clinics')
   const slotsDropdown = $('#slots')
   const servicesDropdown = $('#service')
@@ -155,6 +156,13 @@
           } else {
             if (! blockedSlots[event.date]) {
               blockedSlots[event.date] = []
+            }
+
+            let eventStartHour = event.start_time.split(':')[0]
+            let eventEndHour = event.end_time.split(':')[0]
+
+            if (eventStartHour <= 8 && eventEndHour >= 17) {
+              disabledDates.push(event.date)
             }
 
             blockedSlots[event.date].push({
@@ -248,16 +256,22 @@
         processing = false
       })
       .catch((error) => {
-        let responseData = error.response.data
-        let errors = responseData.errors
+        if (error.response.status == 500) {
+          errorList.append(`
+            <li>Apologies, the selected schedule is not available (the slot may be filled or closed).</li>
+          `)
+        } else {
+          let responseData = error.response.data
+          let errors = responseData.errors
 
-        for (const key in errors) {
-          if (errors.hasOwnProperty(key)) {
-            let errorMessage = errors[key][0]
+          for (const key in errors) {
+            if (errors.hasOwnProperty(key)) {
+              let errorMessage = errors[key][0]
 
-            errorList.append(`
-              <li>${errorMessage}</li>
-            `)
+              errorList.append(`
+                <li>${errorMessage}</li>
+              `)
+            }
           }
         }
 
