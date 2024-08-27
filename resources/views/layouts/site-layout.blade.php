@@ -110,7 +110,7 @@
           </div>
           <div class="flex flex-col lg:flex-row lg:gap-5">
             <ul class="mt-3 text-white">
-              <li>Visit our social media accounts:</li>
+              <li>Chat with us:</li>
               @foreach($branches as $branch)
                 <li class="text-white">
                   <svg class="inline h-[20px] w-[20px] mb-[5px]" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,255.99098,255.99098">
