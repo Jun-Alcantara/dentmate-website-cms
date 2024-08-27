@@ -5,7 +5,7 @@
   }
 </style>
 
-<section id="booking-form-section" class="bg-white">
+<section id="booking-form-section" class="bg-white" style="display: none;">
   <div class="max-w-screen-xl mx-auto px-5 py-[50px]">
     <h3 class="text-4xl font-semibold text-[#083d67]">Book Now</h3>
     <div class="mt-2">
