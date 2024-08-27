@@ -101,9 +101,6 @@
             <li>
               <a href="/our-happy-patients" class="text-white">Our Happy Patients</a>
             </li>
-            <li>
-              <a href="/#booking-form-section" class="text-white">Book Now</a>
-            </li>
           </ul>
         </div>
 
