@@ -156,3 +156,22 @@ html {
     /* max-width: 255px; */
     background-color: #fbb03b;
   }
+
+  .branch-overlay {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .overlay-divider {
+    width: 0;
+    transition: width 0.4s ease-in-out;
+  }
+
+  .branch-card:hover .branch-overlay {
+    opacity: 1;
+    display: block;
+  }
+
+  .branch-card:hover .overlay-divider {
+    width: 80%;
+  }
